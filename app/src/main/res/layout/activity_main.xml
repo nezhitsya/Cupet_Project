@@ -10,10 +10,10 @@
     <ImageView
         android:id="@+id/logo"
         android:layout_width="160dp"
-        android:layout_height="wrap_content"
+        android:layout_height="160dp"
+        android:src="@drawable/logo"
         android:layout_marginTop="230dp"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/logo" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:id="@+id/project"
