@@ -5,15 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
+    android:padding="10dp"
     tools:context=".LoginActivity">
 
     <ImageView
         android:id="@+id/logo"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/logo"
+        android:src="@drawable/ic_logo"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp" />
+        android:layout_marginTop="90dp" />
 
     <EditText
         android:id="@+id/emailText"
