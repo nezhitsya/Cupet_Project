@@ -20,9 +20,11 @@ class RegisterActivity : AppCompatActivity() {
 
         next_btn.setOnClickListener {
             signUp()
+        }
 
-            val editProfileIntent = Intent(this, editProfileActivity::class.java)
-            startActivity(editProfileIntent)
+        back_btn.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
         }
     }
 
@@ -48,8 +50,8 @@ class RegisterActivity : AppCompatActivity() {
         auth.createUserWithEmailAndPassword(email.text.toString(), password.text.toString())
             .addOnCompleteListener(this) { task ->
                 if(task.isSuccessful) {
-                startActivity(Intent(this, editProfileActivity::class.java))
-                finish()
+                    startActivity(Intent(this, editProfileActivity::class.java))
+                    finish()
                 } else {
                     Toast.makeText(baseContext, "다시 시도해주세요.", Toast.LENGTH_SHORT).show()
                 }
