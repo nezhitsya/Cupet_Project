@@ -48,6 +48,25 @@
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp" />
 
+    <Spinner
+        android:id="@+id/city"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:layout_below="@+id/password"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp" />
+
+    <Spinner
+        android:id="@+id/state"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:layout_below="@+id/password"
+        android:layout_toRightOf="@+id/city"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp" />
+
     <ImageView
         android:id="@+id/next_btn"
         android:layout_width="wrap_content"

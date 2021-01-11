@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="city">
+        <item>서울특별</item>
+        <item>경기도</item>
+        <item>강원도</item>
+    </string-array>
+</resources>
