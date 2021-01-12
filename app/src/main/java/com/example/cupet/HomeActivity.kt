@@ -13,7 +13,7 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.home_include_drawer)
 
         drawer.setOnClickListener {
-            home_drawer_layout.openDrawer((GravityCompat.START))
+            home_drawer_layout.openDrawer((GravityCompat.END))
         }
 
         nav_join.setOnClickListener {

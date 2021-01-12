@@ -15,13 +15,13 @@
         layout="@layout/activity_home"/>
 
     <com.google.android.material.navigation.NavigationView
+        android:layout_width="290dp"
+        android:layout_height="match_parent"
         android:id="@+id/navigation_view"
         android:orientation="vertical"
         android:background="@color/colorBackground"
         android:layout_gravity = "right"
-        app:itemTextColor="@color/colorBlack"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        app:itemTextColor="@color/colorBlack">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -39,6 +39,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/header"
                 app:layout_constraintLeft_toLeftOf="parent"
+                android:padding="20dp"
                 android:orientation="vertical">
 
                 <Button
@@ -51,7 +52,6 @@
                     style="?android:attr/borderlessButtonStyle"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
-                    android:layout_marginTop="20dp"
                     android:drawableLeft="@drawable/ic_join"
                     android:gravity="center_vertical"
                     android:text="    즐겨찾는 병원"
