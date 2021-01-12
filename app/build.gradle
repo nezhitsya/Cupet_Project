@@ -47,4 +47,7 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:2.2.0' // circle image view
     implementation 'androidx.legacy:legacy-support-v4:1.0.0' // DrawerLayout
     implementation 'com.google.android.material:material:1.0.0' // NavigationView
+    // Glide: Image loading
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
 }
