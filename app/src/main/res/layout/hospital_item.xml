@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/hospital_img"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ic_logo"
+        app:layout_constraintDimensionRatio="1:1"
+        android:layout_margin="20dp" />
+
+    <TextView
+        android:id="@+id/hopital_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorBlack"
+        android:textSize="25dp"
+        android:layout_toRightOf="@+id/hospital_img"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="22dp" />
+
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/hopital_name"
+        android:layout_toRightOf="@id/hospital_img"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp" />
+
+    <ImageView
+        android:id="@+id/likes1"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="70dp"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/ic_dislike" />
+
+    <ImageView
+        android:id="@+id/likes2"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="70dp"
+        android:layout_toLeftOf="@+id/likes1"
+        android:src="@drawable/ic_dislike" />
+
+    <ImageView
+        android:id="@+id/likes3"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="70dp"
+        android:layout_toLeftOf="@+id/likes2"
+        android:src="@drawable/ic_dislike" />
+
+</RelativeLayout>
