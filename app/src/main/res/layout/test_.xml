@@ -1,69 +1,83 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingBottom="4sp"
-    android:paddingLeft="5sp"
-    android:paddingRight="5sp"
-    android:paddingTop="2dp" >
+    android:layout_height="match_parent"
+    android:background="#eaeaea"
+    android:fillViewport="true" >
 
-    <LinearLayout
+    <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/black_button"
-        android:orientation="horizontal"
-        android:weightSum="100" >
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" >
 
-        <ImageView
-            android:id="@+id/img"
-            android:layout_width="40sp"
-            android:layout_height="40sp"
-            android:layout_marginTop="6sp"
-            android:adjustViewBounds="true"
-            android:baselineAlignBottom="true"
-            android:contentDescription="Color Stripe"
-            android:scaleType="centerCrop"
-            android:src="@drawable/people" />
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
 
-        <LinearLayout
-            android:id="@+id/contentLayout"
-            android:layout_width="0dip"
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="16dp"
+                android:autoLink="web"
+                android:padding="10sp"
+                android:textColor="#515151"
+                android:text="@string/create_page_des" />
+        </TableRow>
+
+
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dip"
-            android:layout_weight="90"
-            android:orientation="vertical" >
+            android:gravity="center"
+            android:padding="10sp" >
 
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dip"
-                android:text="No Info"
-                android:textColor="#000000"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="8dip"
-                android:layout_marginRight="8dip"
-                android:autoLink="all"
-                android:textColor="#5D5D5D"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/date"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="9sp"
-                android:text="00"
-                android:textColor="#8C8C8C"
-                android:textSize="10sp" />
+                android:layout_height="match_parent"
+                android:gravity="center" >
 
-        </LinearLayout>
+                <ImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="80sp"
+                    android:layout_height="80sp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20sp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/black_button" />
 
-    </LinearLayout>
+            </RelativeLayout>
+        </TableRow>
 
-</LinearLayout>
+        <TableRow
+            android:id="@+id/tableRow4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+
+            <EditText
+                android:id="@+id/editText1"
+                android:layout_width="wrap_content"
+                android:layout_height="30sp"
+                android:ems="10"
+                android:layout_marginTop="5sp"
+                android:gravity="center"
+                android:hint="@string/page_name"
+                android:background="@null"
+                android:singleLine="true" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center" >
+            </RelativeLayout>
+        </TableRow>
+    </TableLayout>
+
+</ScrollView>

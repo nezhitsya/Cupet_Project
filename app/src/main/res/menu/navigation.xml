@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_join"
+        android:icon="@drawable/ic_join"
+        android:title="즐겨찾는 병원" />
+
+    <item
+        android:id="@+id/nav_cal"
+        android:icon="@drawable/ic_cal"
+        android:title="진료비 계산기" />
+
+    <item
+        android:id="@+id/nav_post"
+        android:icon="@drawable/ic_post"
+        android:title="게시판" />
+
+    <item
+        android:id="@+id/nav_bookmark"
+        android:icon="@drawable/ic_bookmark"
+        android:title="북마크" />
+
+    <item
+        android:id="@+id/nav_mypost"
+        android:icon="@drawable/ic_mypost"
+        android:title="내가 쓴 글" />
+
+</menu>
