@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_register.*
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
-    val spinner: Spinner = findViewById(R.id.city)
+    private val spinner: Spinner = findViewById(R.id.city)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

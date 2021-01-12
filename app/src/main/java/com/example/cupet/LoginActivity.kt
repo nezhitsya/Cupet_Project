@@ -16,8 +16,6 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        auth = FirebaseAuth.getInstance()
-
         txt_signup.setOnClickListener{
             val signupIntent = Intent(this, RegisterActivity::class.java)
             startActivity(signupIntent)
@@ -30,6 +28,8 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun doLogin() {
+        auth = FirebaseAuth.getInstance()
+
         auth.signInWithEmailAndPassword(emailText.text.toString(),
             passwordText.text.toString()).addOnCompleteListener(this) { task ->
             if (task.isSuccessful) {

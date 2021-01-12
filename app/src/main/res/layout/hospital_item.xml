@@ -13,7 +13,7 @@
         android:layout_margin="20dp" />
 
     <TextView
-        android:id="@+id/hopital_name"
+        android:id="@+id/hospital_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/colorBlack"
@@ -26,13 +26,13 @@
         android:id="@+id/address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/hopital_name"
+        android:layout_below="@+id/hospital_name"
         android:layout_toRightOf="@id/hospital_img"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp" />
 
     <ImageView
-        android:id="@+id/likes1"
+        android:id="@+id/likes3"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_alignParentRight="true"
@@ -45,11 +45,11 @@
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginTop="70dp"
-        android:layout_toLeftOf="@+id/likes1"
+        android:layout_toLeftOf="@+id/likes3"
         android:src="@drawable/ic_dislike" />
 
     <ImageView
-        android:id="@+id/likes3"
+        android:id="@+id/likes1"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginTop="70dp"

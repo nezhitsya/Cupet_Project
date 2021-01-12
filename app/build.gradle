@@ -44,8 +44,7 @@ dependencies {
     // google map api & location
     implementation 'com.google.android.gms:play-services-maps:16.0.0'
     implementation 'com.google.android.gms:play-services-location:16.0.0'
-    // circle image view
-    implementation 'de.hdodenhof:circleimageview:2.2.0'
+    implementation 'de.hdodenhof:circleimageview:2.2.0' // circle image view
     implementation 'androidx.legacy:legacy-support-v4:1.0.0' // DrawerLayout
     implementation 'com.google.android.material:material:1.0.0' // NavigationView
 }

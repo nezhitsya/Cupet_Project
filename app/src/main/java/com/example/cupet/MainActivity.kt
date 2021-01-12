@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun init() {
         firebaseAuth = FirebaseAuth.getInstance()
+
         listener = FirebaseAuth.AuthStateListener { myFirebaseAuth ->
             val user = myFirebaseAuth.currentUser
             if(user != null) {
