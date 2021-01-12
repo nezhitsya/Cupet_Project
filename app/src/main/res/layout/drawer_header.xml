@@ -22,7 +22,6 @@
         android:layout_below="@+id/profile"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:text="쪼랭언니" />
+        android:layout_marginBottom="20dp" />
 
 </RelativeLayout>
