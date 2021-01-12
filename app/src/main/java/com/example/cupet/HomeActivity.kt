@@ -24,7 +24,15 @@ class HomeActivity : AppCompatActivity() {
             //버튼2 클릭 시
         }
 
+        nav_post.setOnClickListener {
+            //버튼3 클릭 시
+        }
+
         nav_bookmark.setOnClickListener {
+            //버튼3 클릭 시
+        }
+
+        nav_mypost.setOnClickListener {
             //버튼3 클릭 시
         }
     }
