@@ -73,7 +73,6 @@ class HomeActivity : AppCompatActivity() {
 
     private fun userInfo() {
         mReference = FirebaseDatabase.getInstance().getReference("Users").child(profileid)
-        Log.d("error", mReference.toString())
 
         val postListener = object: ValueEventListener {
             override fun onDataChange(dataSnapshop: DataSnapshot) {
