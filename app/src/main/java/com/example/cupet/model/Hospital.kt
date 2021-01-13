@@ -7,5 +7,5 @@ data class Hospital(
     var image: String,
     var intro: String,
     var likes: Int,
-    var tel: Long
+    var tel: String
 )

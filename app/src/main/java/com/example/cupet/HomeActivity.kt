@@ -1,7 +1,10 @@
 package com.example.cupet
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cupet.adapter.HomeAdapter
@@ -19,12 +22,16 @@ class HomeActivity : AppCompatActivity() {
 
     var hospitalList = arrayListOf<Hospital>()
     lateinit var firebaseUser: FirebaseUser
+    lateinit var mReference: DatabaseReference
+    private lateinit var profileid: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home_include_drawer)
 
         firebaseUser = FirebaseAuth.getInstance().currentUser!!
+        var prefs: SharedPreferences = getSharedPreferences("PREFS", Context.MODE_PRIVATE)
+        profileid = prefs.getString("id", firebaseUser.uid).toString()
 
         search.setOnClickListener{
 
@@ -64,20 +71,22 @@ class HomeActivity : AppCompatActivity() {
         userInfo()
     }
 
-    fun userInfo() {
-        var reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Users").child("profileid")
+    private fun userInfo() {
+        mReference = FirebaseDatabase.getInstance().getReference("Users").child(profileid)
+        Log.d("error", mReference.toString())
 
         val postListener = object: ValueEventListener {
             override fun onDataChange(dataSnapshop: DataSnapshot) {
-                val user = dataSnapshop.value as User
-                val address = user.city + user.state
-                toolbar_title.text = address
+                val user: User? = dataSnapshop.getValue(User::class.java)
+                user?.let {
+                    toolbar_title.text = user.city + " " + user.state
+                }
             }
 
             override fun onCancelled(dataSnapshot: DatabaseError) {
 
             }
         }
-        reference.addValueEventListener(postListener)
+        mReference.addValueEventListener(postListener)
     }
 }
