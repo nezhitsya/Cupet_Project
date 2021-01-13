@@ -11,6 +11,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.activity_register.view.*
 import kotlinx.android.synthetic.main.home_include_drawer.*
 import kotlinx.android.synthetic.main.toolbar_item.*
 
@@ -64,12 +65,13 @@ class HomeActivity : AppCompatActivity() {
     }
 
     fun userInfo() {
-        var reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("User").child("profileid")
+        var reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Users").child("profileid")
 
         val postListener = object: ValueEventListener {
             override fun onDataChange(dataSnapshop: DataSnapshot) {
                 val user = dataSnapshop.value as User
-                toolbar_title.text = user.address
+                val address = user.city + user.state
+                toolbar_title.text = address
             }
 
             override fun onCancelled(dataSnapshot: DatabaseError) {

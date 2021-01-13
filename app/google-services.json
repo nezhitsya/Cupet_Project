@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "603633181147",
+    "firebase_url": "https://cupet-84a4d-default-rtdb.firebaseio.com",
+    "project_id": "cupet-84a4d",
+    "storage_bucket": "cupet-84a4d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:603633181147:android:cae2517586b4f29a6487fe",
+        "android_client_info": {
+          "package_name": "com.example.cupet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "603633181147-k1o470kkmij0lh502m3u6qe52voi1pbb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cupet",
+            "certificate_hash": "224267cc93d846969a99c17973d7b834eb123931"
+          }
+        },
+        {
+          "client_id": "603633181147-fqm1gh6d4cu3bgiss20lrjt66gaf9qph.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2HQeveVxdtPpvaXiBiZMgSBSj11iCjm8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "603633181147-fqm1gh6d4cu3bgiss20lrjt66gaf9qph.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
