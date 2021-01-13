@@ -10,13 +10,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cupet.R
 import com.example.cupet.model.Hospital
+import com.example.cupet.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+import org.w3c.dom.Text
 
 class HomeAdapter(val context: Context, val mHospital: List<Hospital>): RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
 
-//    lateinit var mHospital: List<Hospital>
     lateinit var firebaseUser: FirebaseUser
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
@@ -49,6 +50,7 @@ class HomeAdapter(val context: Context, val mHospital: List<Hospital>): Recycler
         holder.hospital_name.text = hospital.name
         holder.address.text = hospital.address
         Glide.with(context).load(hospital.image).into(holder.hospital_img)
+
         if(hospital.likes.equals(3)) {
             holder.likes1.setImageResource(R.drawable.ic_like)
             holder.likes2.setImageResource(R.drawable.ic_like)
@@ -63,19 +65,19 @@ class HomeAdapter(val context: Context, val mHospital: List<Hospital>): Recycler
 
     override fun getItemCount() = mHospital.size
 
-//    fun getInfo(imageView: ImageView, textView: TextView) {
-//        var reference: DatabaseReference
-//        reference = FirebaseDatabase.getInstance().getReference().child("Hospital")
-//
-//        val postListener = object: ValueEventListener {
-//            override fun onDataChange(dataSnapshop: DataSnapshot) {
-////                val user = dataSnapshop.getValue<User>()
-//            }
-//
-//            override fun onCancelled(dataSnapshot: DatabaseError) {
-//
-//            }
-//        }
-//        reference.addValueEventListener(postListener)
-//    }
+    fun getInfo() {
+        var reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Hospital").child("profileid")
+
+        val postListener = object: ValueEventListener {
+            override fun onDataChange(dataSnapshop: DataSnapshot) {
+                val user = dataSnapshop.value as User
+
+            }
+
+            override fun onCancelled(dataSnapshot: DatabaseError) {
+
+            }
+        }
+        reference.addValueEventListener(postListener)
+    }
 }

@@ -1,24 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.Toolbar
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:minHeight="?attr/actionBarSize"
     android:background="@color/colorWhite">
 
+    <TextView
+        android:id="@+id/toolbar_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/colorBlack"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="20dp"
+        android:textSize="18dp" />
+
     <ImageView
-        android:id="@+id/search"
+        android:id="@+id/spinner"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:src="@drawable/ic_search"
-        android:layout_marginLeft="340dp"/>
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="33dp"
+        android:src="@drawable/ic_down" />
 
     <ImageView
         android:id="@+id/drawer"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_marginLeft="10dp"
-        android:src="@drawable/ic_menu"/>
+        android:layout_gravity = "right"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="30dp"
+        android:src="@drawable/ic_menu" />
+
+    <ImageView
+        android:id="@+id/search"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity = "right"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="30dp"
+        android:src="@drawable/ic_search"
+        android:visibility="visible" />
 
 </androidx.appcompat.widget.Toolbar>
