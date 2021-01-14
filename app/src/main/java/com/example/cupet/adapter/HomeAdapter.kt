@@ -1,6 +1,7 @@
 package com.example.cupet.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,42 +45,45 @@ class HomeAdapter(val context: Context?, val mHospital: List<Hospital>): Recycle
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         firebaseUser = FirebaseAuth.getInstance().currentUser!!
-        var hospital = mHospital.get(position)
-        val hospital_address = hospital.city + hospital.state
+        var hospital: Hospital = mHospital[position]
+        var hospitalAddress = hospital.city + hospital.state
 
         holder.hospital_name.text = hospital.name
-        holder.address.text = hospital_address
+        holder.address.text = hospitalAddress
         if (context != null) {
             Glide.with(context).load(hospital.image).into(holder.hospital_img)
         }
 
-        if(hospital.likes.equals(3)) {
+        if(hospital.likes == 3) {
             holder.likes1.setImageResource(R.drawable.ic_like)
             holder.likes2.setImageResource(R.drawable.ic_like)
             holder.likes3.setImageResource(R.drawable.ic_like)
-        } else if(hospital.likes.equals(2)) {
+        } else if(hospital.likes == 2) {
             holder.likes1.setImageResource(R.drawable.ic_like)
             holder.likes2.setImageResource(R.drawable.ic_like)
-        } else if(hospital.likes.equals(1)) {
+        } else if(hospital.likes == 1) {
             holder.likes1.setImageResource(R.drawable.ic_like)
         }
+        getInfo()
     }
 
     override fun getItemCount() = mHospital.size
 
     fun getInfo() {
-        var reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Hospital").child("profileid")
+        var city: String = FirebaseDatabase.getInstance().getReference("Users").child("profileid").child("city").toString()
+        var state: String = FirebaseDatabase.getInstance().getReference("Users").child("profileid").child("state").toString()
+        var hospital = FirebaseDatabase.getInstance().getReference("Hospital").orderByChild("city").equalTo(city)
 
-        val postListener = object: ValueEventListener {
-            override fun onDataChange(dataSnapshop: DataSnapshot) {
-                val user = dataSnapshop.value as User
-
-            }
-
-            override fun onCancelled(dataSnapshot: DatabaseError) {
-
-            }
-        }
-        reference.addValueEventListener(postListener)
+//        val postListener = object: ValueEventListener {
+//            override fun onDataChange(dataSnapshop: DataSnapshot) {
+//                val user = dataSnapshop.value as User
+//
+//            }
+//
+//            override fun onCancelled(dataSnapshot: DatabaseError) {
+//
+//            }
+//        }
+//        reference.addValueEventListener(postListener)
     }
 }
