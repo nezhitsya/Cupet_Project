@@ -8,6 +8,7 @@ import android.util.Log
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cupet.adapter.HomeAdapter
+import com.example.cupet.fragment.homeFragment
 import com.example.cupet.model.Hospital
 import com.example.cupet.model.User
 import com.google.firebase.auth.FirebaseAuth
@@ -20,7 +21,6 @@ import kotlinx.android.synthetic.main.toolbar_item.*
 
 class HomeActivity : AppCompatActivity() {
 
-    var hospitalList = arrayListOf<Hospital>()
     lateinit var firebaseUser: FirebaseUser
     lateinit var mReference: DatabaseReference
     private lateinit var profileid: String
@@ -28,6 +28,8 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home_include_drawer)
+
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, homeFragment()).commit()
 
         firebaseUser = FirebaseAuth.getInstance().currentUser!!
         var prefs: SharedPreferences = getSharedPreferences("PREFS", Context.MODE_PRIVATE)
@@ -60,13 +62,6 @@ class HomeActivity : AppCompatActivity() {
         nav_mypost.setOnClickListener {
 
         }
-
-        val homeAdapter = HomeAdapter(this, hospitalList)
-        recycler_view.adapter = homeAdapter
-
-        val linearLayoutManager = LinearLayoutManager(this)
-        recycler_view.layoutManager = linearLayoutManager
-        recycler_view.setHasFixedSize(true)
 
         userInfo()
     }

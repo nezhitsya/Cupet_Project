@@ -14,9 +14,8 @@ import com.example.cupet.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
-import org.w3c.dom.Text
 
-class HomeAdapter(val context: Context, val mHospital: List<Hospital>): RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
+class HomeAdapter(val context: Context?, val mHospital: List<Hospital>): RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
 
     lateinit var firebaseUser: FirebaseUser
 
@@ -50,7 +49,9 @@ class HomeAdapter(val context: Context, val mHospital: List<Hospital>): Recycler
 
         holder.hospital_name.text = hospital.name
         holder.address.text = hospital_address
-        Glide.with(context).load(hospital.image).into(holder.hospital_img)
+        if (context != null) {
+            Glide.with(context).load(hospital.image).into(holder.hospital_img)
+        }
 
         if(hospital.likes.equals(3)) {
             holder.likes1.setImageResource(R.drawable.ic_like)
