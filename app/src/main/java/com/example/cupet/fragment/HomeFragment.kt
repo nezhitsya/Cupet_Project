@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.drawer_header.*
 import kotlinx.android.synthetic.main.toolbar_item.*
+import java.util.*
 
 class HomeFragment : Fragment() {
 
@@ -52,49 +53,16 @@ class HomeFragment : Fragment() {
         linearLayoutManager.stackFromEnd = true
         recyclerView.layoutManager = linearLayoutManager
 
-        mReference = FirebaseDatabase.getInstance().getReference("Users").child(profileid)
-        mReference.addValueEventListener(object: ValueEventListener{
-            override fun onCancelled(dataSnapshot: DatabaseError) {
-
-            }
-
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val user: User? = dataSnapshot.getValue(User::class.java)
-                user?.let {
-                    city = user.city.toString()
-                    toolbar_title.text = user.city + " " + user.state
-                    nickname.text = user.nickname
-                    Glide.with(this@HomeFragment).load(user.profile).into(profile)
-                }
-            }
-        })
-
-        mReference = FirebaseDatabase.getInstance().getReference("Hospital").orderByChild("state").equalTo(city) as DatabaseReference
-        mReference.addValueEventListener(object: ValueEventListener{
-            override fun onCancelled(dataSnapshot: DatabaseError) {
-
-            }
-
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                for (child in dataSnapshot.children) {
-                    val hospital: Hospital? = child.getValue(Hospital::class.java)
-                    hospitalList?.add(hospital!!)
-                }
-                val adapter = HomeAdapter(context!!, hospitalList)
-                recyclerView?.adapter = adapter
-            }
-        })
+        hospitalInfo()
 
         return view
     }
 
-    private fun hostpital() {
-        mReference = FirebaseDatabase.getInstance().getReference("Hospital").orderByChild("state").equalTo(city) as DatabaseReference
+    private fun hospitalInfo() {
+        mReference = FirebaseDatabase.getInstance().getReference("Hospital")
+        var query: Query = FirebaseDatabase.getInstance().getReference("Hospital").orderByChild("state").equalTo("양천구")
 
-        mReference.addValueEventListener(object: ValueEventListener{
-            override fun onCancelled(dataSnapshot: DatabaseError) {
-
-            }
+        query.addListenerForSingleValueEvent(object: ValueEventListener {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (child in dataSnapshot.children) {
@@ -103,6 +71,10 @@ class HomeFragment : Fragment() {
                 }
                 val adapter = HomeAdapter(context!!, hospitalList)
                 recyclerView?.adapter = adapter
+            }
+
+            override fun onCancelled(dataSnapshot: DatabaseError) {
+
             }
         })
     }

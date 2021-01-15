@@ -29,7 +29,6 @@ class LoginActivity : AppCompatActivity() {
         login.setOnClickListener {
             doLogin()
         }
-
     }
 
     private fun doLogin() {
