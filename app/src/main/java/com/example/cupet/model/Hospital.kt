@@ -6,6 +6,6 @@ data class Hospital(
     var state: String? = "",
     var image: String? = "",
     var intro: String? = "",
-    var likes: Int,
+    var likes: Int = 0,
     var tel: String? = ""
 )

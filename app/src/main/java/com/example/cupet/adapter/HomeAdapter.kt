@@ -1,7 +1,6 @@
 package com.example.cupet.adapter
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,80 +9,46 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cupet.R
+import com.example.cupet.fragment.homeFragment
 import com.example.cupet.model.Hospital
-import com.example.cupet.model.User
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.*
 
-class HomeAdapter(val context: Context?, val mHospital: List<Hospital>): RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
+class HomeAdapter(val context: Context, val hospitalList: ArrayList<Hospital>): RecyclerView.Adapter<HomeAdapter.Holder>() {
 
-    lateinit var firebaseUser: FirebaseUser
-
-    class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        var hospital_name: TextView
-        var address: TextView
-        var hospital_img: ImageView
-        var likes1: ImageView
-        var likes2: ImageView
-        var likes3: ImageView
-
-        init {
-            hospital_name = view.findViewById(R.id.hospital_name)
-            address = view.findViewById(R.id.address)
-            hospital_img = view.findViewById(R.id.hospital_img)
-            likes1 = view.findViewById(R.id.likes1)
-            likes2 = view.findViewById(R.id.likes2)
-            likes3 = view.findViewById(R.id.likes3)
-        }
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.hospital_item, parent, false)
-        return ViewHolder(view)
+        return Holder(view)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        firebaseUser = FirebaseAuth.getInstance().currentUser!!
-        var hospital: Hospital = mHospital[position]
-        var hospitalAddress = hospital.city + hospital.state
-
-        holder.hospital_name.text = hospital.name
-        holder.address.text = hospitalAddress
-        if (context != null) {
-            Glide.with(context).load(hospital.image).into(holder.hospital_img)
-        }
-
-        if(hospital.likes == 3) {
-            holder.likes1.setImageResource(R.drawable.ic_like)
-            holder.likes2.setImageResource(R.drawable.ic_like)
-            holder.likes3.setImageResource(R.drawable.ic_like)
-        } else if(hospital.likes == 2) {
-            holder.likes1.setImageResource(R.drawable.ic_like)
-            holder.likes2.setImageResource(R.drawable.ic_like)
-        } else if(hospital.likes == 1) {
-            holder.likes1.setImageResource(R.drawable.ic_like)
-        }
-        getInfo()
+    override fun getItemCount(): Int {
+        return hospitalList.size
     }
 
-    override fun getItemCount() = mHospital.size
+    inner class Holder(itemView: View?): RecyclerView.ViewHolder(itemView!!) {
+        val hospital_name = itemView?.findViewById<TextView>(R.id.hospital_name)
+        var address = itemView?.findViewById<TextView>(R.id.address)
+        var hospital_img = itemView?.findViewById<ImageView>(R.id.hospital_img)
+        var likes1 = itemView?.findViewById<ImageView>(R.id.likes1)
+        var likes2 = itemView?.findViewById<ImageView>(R.id.likes2)
+        var likes3 = itemView?.findViewById<ImageView>(R.id.likes3)
 
-    fun getInfo() {
-        var city: String = FirebaseDatabase.getInstance().getReference("Users").child("profileid").child("city").toString()
-        var state: String = FirebaseDatabase.getInstance().getReference("Users").child("profileid").child("state").toString()
-        var hospital = FirebaseDatabase.getInstance().getReference("Hospital").orderByChild("city").equalTo(city)
+        fun bind(mHospital: Hospital, context: Context) {
+            hospital_name?.text = mHospital.name
+            address?.text = mHospital.city + mHospital.state
+            hospital_img?.let { Glide.with(context).load(mHospital.image).into(it) }
+            if(mHospital.likes == 3) {
+                likes1?.setImageResource(R.drawable.ic_like)
+                likes2?.setImageResource(R.drawable.ic_like)
+                likes3?.setImageResource(R.drawable.ic_like)
+            } else if(mHospital.likes == 2) {
+                likes1?.setImageResource(R.drawable.ic_like)
+                likes2?.setImageResource(R.drawable.ic_like)
+            } else if(mHospital.likes == 1) {
+                likes1?.setImageResource(R.drawable.ic_like)
+            }
+        }
+    }
 
-//        val postListener = object: ValueEventListener {
-//            override fun onDataChange(dataSnapshop: DataSnapshot) {
-//                val user = dataSnapshop.value as User
-//
-//            }
-//
-//            override fun onCancelled(dataSnapshot: DatabaseError) {
-//
-//            }
-//        }
-//        reference.addValueEventListener(postListener)
+    override fun onBindViewHolder(holder: Holder, position: Int) {
+        holder?.bind(hospitalList[position], context)
     }
 }

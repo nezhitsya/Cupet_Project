@@ -67,8 +67,8 @@ class HomeActivity : AppCompatActivity() {
         mReference = FirebaseDatabase.getInstance().getReference("Users").child(profileid)
 
         val postListener = object: ValueEventListener {
-            override fun onDataChange(dataSnapshop: DataSnapshot) {
-                val user: User? = dataSnapshop.getValue(User::class.java)
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val user: User? = dataSnapshot.getValue(User::class.java)
                 user?.let {
                     toolbar_title.text = user.city + " " + user.state
                     nickname.text = user.nickname

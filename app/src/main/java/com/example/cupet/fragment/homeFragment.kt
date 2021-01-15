@@ -10,19 +10,23 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cupet.R
 import com.example.cupet.adapter.HomeAdapter
 import com.example.cupet.model.Hospital
+import com.google.firebase.database.*
 
 class homeFragment : Fragment() {
 
-    lateinit var recyclerView: RecyclerView
-    lateinit var hospitalList: List<Hospital>
-    lateinit var homeAdapter: HomeAdapter
+    private lateinit var recyclerView: RecyclerView
+    var hospitalList = arrayListOf<Hospital>()
+    lateinit var firebaseDatabase: FirebaseDatabase
+    lateinit var mReference: DatabaseReference
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        val view: View = inflater.inflate(R.layout.fragment_home, container, false)
+        var view: View = inflater.inflate(R.layout.fragment_home, container, false)
+
+        firebaseDatabase = FirebaseDatabase.getInstance()
 
         recyclerView = view.findViewById(R.id.recycler_view)
         recyclerView.setHasFixedSize(true)
@@ -31,9 +35,21 @@ class homeFragment : Fragment() {
         linearLayoutManager.stackFromEnd = true
         recyclerView.layoutManager = linearLayoutManager
 
-        hospitalList = ArrayList<Hospital>()
-        homeAdapter = HomeAdapter(context, hospitalList)
-        recyclerView.adapter = homeAdapter
+        mReference = FirebaseDatabase.getInstance().getReference("Hospital")
+        mReference.addValueEventListener(object: ValueEventListener{
+            override fun onCancelled(dataSnapshot: DatabaseError) {
+
+            }
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (child in dataSnapshot.children) {
+                    val hospital: Hospital? = child.getValue(Hospital::class.java)
+                    hospitalList?.add(hospital!!)
+                }
+                val adapter = HomeAdapter(context!!, hospitalList)
+                recyclerView?.adapter = adapter
+            }
+        })
 
         return view
     }
