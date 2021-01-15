@@ -9,6 +9,7 @@ import androidx.core.view.GravityCompat
 import com.bumptech.glide.Glide
 import com.example.cupet.fragment.CommunityFragment
 import com.example.cupet.fragment.HomeFragment
+import com.example.cupet.fragment.WriteFragment
 import com.example.cupet.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser

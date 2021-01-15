@@ -18,11 +18,11 @@ class CommunityFragment : Fragment() {
         var view: View = inflater.inflate(R.layout.fragment_community, container, false)
 
         write.setOnClickListener{
-
+            activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, WriteFragment()).commit()
         }
 
         write_txt.setOnClickListener {
-
+            activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, WriteFragment()).commit()
         }
 
         return view
