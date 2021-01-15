@@ -91,8 +91,6 @@ class HomeFragment : Fragment() {
                 val user: User? = dataSnapshot.getValue(User::class.java)
                 user?.let {
                     stateInfo = user.state.toString()
-//                    toolbar_title.text = user.city + " " + user.state
-
                     hospitalInfo()
                 }
             }
