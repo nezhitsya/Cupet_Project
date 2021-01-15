@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
 import android.view.View
 import androidx.core.view.GravityCompat
 import com.bumptech.glide.Glide
@@ -43,14 +42,15 @@ class HomeActivity : AppCompatActivity() {
         }
 
         nav_join.setOnClickListener {
-
+            toolbar_title.text = "즐겨찾는 병원"
         }
 
         nav_cal.setOnClickListener {
-
+            toolbar_title.text = "진료비 계산기"
         }
 
         nav_post.setOnClickListener {
+            home_drawer_layout.closeDrawer((GravityCompat.END))
             toolbar_title.text = "게시판"
             search.visibility = View.GONE
             spinner.visibility = View.GONE
@@ -58,11 +58,11 @@ class HomeActivity : AppCompatActivity() {
         }
 
         nav_bookmark.setOnClickListener {
-
+            toolbar_title.text = "북마크"
         }
 
         nav_mypost.setOnClickListener {
-
+            toolbar_title.text = "내가 쓴 글"
         }
 
         userInfo()

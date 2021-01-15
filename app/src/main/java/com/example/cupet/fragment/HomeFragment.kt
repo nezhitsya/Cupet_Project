@@ -1,11 +1,14 @@
 package com.example.cupet.fragment
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -30,7 +33,7 @@ class HomeFragment : Fragment() {
     lateinit var mReference: DatabaseReference
     lateinit var firebaseUser: FirebaseUser
     private lateinit var profileid: String
-    lateinit var city: String
+    lateinit var stateInfo: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,9 +45,9 @@ class HomeFragment : Fragment() {
         firebaseDatabase = FirebaseDatabase.getInstance()
         firebaseUser = FirebaseAuth.getInstance().currentUser!!
 
-        var prefs: SharedPreferences =
-            this.activity!!.getSharedPreferences("pref", Context.MODE_PRIVATE)
-        profileid = prefs.getString("id", firebaseUser.uid).toString()
+        var prefs: SharedPreferences? =
+            context?.getSharedPreferences("pref", Context.MODE_PRIVATE)
+        profileid = prefs?.getString("id", firebaseUser.uid).toString()
 
         recyclerView = view.findViewById(R.id.recycler_view)
         recyclerView.setHasFixedSize(true)
@@ -53,14 +56,14 @@ class HomeFragment : Fragment() {
         linearLayoutManager.stackFromEnd = true
         recyclerView.layoutManager = linearLayoutManager
 
-        hospitalInfo()
+        titleInfo()
 
         return view
     }
 
     private fun hospitalInfo() {
         mReference = FirebaseDatabase.getInstance().getReference("Hospital")
-        var query: Query = FirebaseDatabase.getInstance().getReference("Hospital").orderByChild("state").equalTo("양천구")
+        var query: Query = FirebaseDatabase.getInstance().getReference("Hospital").orderByChild("state").equalTo(stateInfo)
 
         query.addListenerForSingleValueEvent(object: ValueEventListener {
 
@@ -79,21 +82,23 @@ class HomeFragment : Fragment() {
         })
     }
 
-    private fun userInfo() {
+    private fun titleInfo() {
         mReference = FirebaseDatabase.getInstance().getReference("Users").child(profileid)
 
         mReference.addValueEventListener(object: ValueEventListener{
-            override fun onCancelled(dataSnapshot: DatabaseError) {
-
-            }
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val user: User? = dataSnapshot.getValue(User::class.java)
                 user?.let {
-                    toolbar_title.text = user.city + " " + user.state
-                    nickname.text = user.nickname
-                    Glide.with(this@HomeFragment).load(user.profile).into(profile)
+                    stateInfo = user.state.toString()
+//                    toolbar_title.text = user.city + " " + user.state
+
+                    hospitalInfo()
                 }
+            }
+
+            override fun onCancelled(dataSnapshot: DatabaseError) {
+
             }
         })
     }

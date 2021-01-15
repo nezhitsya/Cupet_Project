@@ -78,8 +78,6 @@
                     android:id="@+id/nav_post"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:enabled="false"
                     android:background="@color/colorBackground"
                     style="?android:attr/borderlessButtonStyle"
                     android:layout_marginLeft="21dp"

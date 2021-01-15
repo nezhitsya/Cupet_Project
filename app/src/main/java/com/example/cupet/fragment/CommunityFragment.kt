@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.example.cupet.R
+import kotlinx.android.synthetic.main.fragment_community.*
 
 class CommunityFragment : Fragment() {
 
