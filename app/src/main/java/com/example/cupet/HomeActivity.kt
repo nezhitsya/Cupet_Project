@@ -4,18 +4,15 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.core.view.GravityCompat
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.cupet.adapter.HomeAdapter
+import com.bumptech.glide.Glide
 import com.example.cupet.fragment.homeFragment
-import com.example.cupet.model.Hospital
 import com.example.cupet.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_home.*
-import kotlinx.android.synthetic.main.activity_register.view.*
+import kotlinx.android.synthetic.main.drawer_header.*
 import kotlinx.android.synthetic.main.home_include_drawer.*
 import kotlinx.android.synthetic.main.toolbar_item.*
 
@@ -74,6 +71,8 @@ class HomeActivity : AppCompatActivity() {
                 val user: User? = dataSnapshop.getValue(User::class.java)
                 user?.let {
                     toolbar_title.text = user.city + " " + user.state
+                    nickname.text = user.nickname
+                    Glide.with(this@HomeActivity).load(user.profile).into(profile)
                 }
             }
 
