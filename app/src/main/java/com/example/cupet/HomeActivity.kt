@@ -4,14 +4,16 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
+import android.view.View
 import androidx.core.view.GravityCompat
 import com.bumptech.glide.Glide
-import com.example.cupet.fragment.homeFragment
+import com.example.cupet.fragment.CommunityFragment
+import com.example.cupet.fragment.HomeFragment
 import com.example.cupet.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.drawer_header.*
 import kotlinx.android.synthetic.main.home_include_drawer.*
 import kotlinx.android.synthetic.main.toolbar_item.*
@@ -26,7 +28,7 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home_include_drawer)
 
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, homeFragment()).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, HomeFragment()).commit()
 
         firebaseUser = FirebaseAuth.getInstance().currentUser!!
         var prefs: SharedPreferences = getSharedPreferences("PREFS", Context.MODE_PRIVATE)
@@ -49,7 +51,10 @@ class HomeActivity : AppCompatActivity() {
         }
 
         nav_post.setOnClickListener {
-
+            toolbar_title.text = "게시판"
+            search.visibility = View.GONE
+            spinner.visibility = View.GONE
+            supportFragmentManager.beginTransaction().replace(R.id.fragment_container, CommunityFragment()).commit()
         }
 
         nav_bookmark.setOnClickListener {

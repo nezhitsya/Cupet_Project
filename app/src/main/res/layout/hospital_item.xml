@@ -6,8 +6,8 @@
 
     <ImageView
         android:id="@+id/hospital_img"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:src="@drawable/ic_logo"
         app:layout_constraintDimensionRatio="1:1"
         android:layout_margin="20dp" />
@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/colorBlack"
-        android:textSize="25dp"
+        android:textSize="16dp"
         android:layout_toRightOf="@+id/hospital_img"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="22dp" />
@@ -33,26 +33,26 @@
 
     <ImageView
         android:id="@+id/likes3"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="50dp"
         android:layout_marginRight="10dp"
         android:src="@drawable/ic_dislike" />
 
     <ImageView
         android:id="@+id/likes2"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="70dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="50dp"
         android:layout_toLeftOf="@+id/likes3"
         android:src="@drawable/ic_dislike" />
 
     <ImageView
         android:id="@+id/likes1"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="70dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="50dp"
         android:layout_toLeftOf="@+id/likes2"
         android:src="@drawable/ic_dislike" />
 

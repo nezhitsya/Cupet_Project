@@ -60,6 +60,7 @@
             android:textColor="@color/colorGrey" />
 
         <Button
+            android:id="@+id/comment"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:background="@drawable/round_button"

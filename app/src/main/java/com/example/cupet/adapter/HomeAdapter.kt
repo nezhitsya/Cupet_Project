@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cupet.R
-import com.example.cupet.fragment.homeFragment
+import com.example.cupet.fragment.HomeFragment
 import com.example.cupet.model.Hospital
 
 class HomeAdapter(val context: Context, val hospitalList: ArrayList<Hospital>): RecyclerView.Adapter<HomeAdapter.Holder>() {

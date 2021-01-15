@@ -1,0 +1,128 @@
+package com.example.cupet.fragment
+
+import android.content.Context
+import android.content.SharedPreferences
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.cupet.R
+import com.example.cupet.adapter.HomeAdapter
+import com.example.cupet.model.Hospital
+import com.example.cupet.model.User
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.drawer_header.*
+import kotlinx.android.synthetic.main.toolbar_item.*
+
+class HomeFragment : Fragment() {
+
+    private lateinit var recyclerView: RecyclerView
+    var hospitalList = arrayListOf<Hospital>()
+
+    lateinit var firebaseDatabase: FirebaseDatabase
+    lateinit var mReference: DatabaseReference
+    lateinit var firebaseUser: FirebaseUser
+    private lateinit var profileid: String
+    lateinit var city: String
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+
+        var view: View = inflater.inflate(R.layout.fragment_home, container, false)
+
+        firebaseDatabase = FirebaseDatabase.getInstance()
+        firebaseUser = FirebaseAuth.getInstance().currentUser!!
+
+        var prefs: SharedPreferences =
+            this.activity!!.getSharedPreferences("pref", Context.MODE_PRIVATE)
+        profileid = prefs.getString("id", firebaseUser.uid).toString()
+
+        recyclerView = view.findViewById(R.id.recycler_view)
+        recyclerView.setHasFixedSize(true)
+        val linearLayoutManager = LinearLayoutManager(context)
+        linearLayoutManager.reverseLayout = true
+        linearLayoutManager.stackFromEnd = true
+        recyclerView.layoutManager = linearLayoutManager
+
+        mReference = FirebaseDatabase.getInstance().getReference("Users").child(profileid)
+        mReference.addValueEventListener(object: ValueEventListener{
+            override fun onCancelled(dataSnapshot: DatabaseError) {
+
+            }
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val user: User? = dataSnapshot.getValue(User::class.java)
+                user?.let {
+                    city = user.city.toString()
+                    toolbar_title.text = user.city + " " + user.state
+                    nickname.text = user.nickname
+                    Glide.with(this@HomeFragment).load(user.profile).into(profile)
+                }
+            }
+        })
+
+        mReference = FirebaseDatabase.getInstance().getReference("Hospital").orderByChild("state").equalTo(city) as DatabaseReference
+        mReference.addValueEventListener(object: ValueEventListener{
+            override fun onCancelled(dataSnapshot: DatabaseError) {
+
+            }
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (child in dataSnapshot.children) {
+                    val hospital: Hospital? = child.getValue(Hospital::class.java)
+                    hospitalList?.add(hospital!!)
+                }
+                val adapter = HomeAdapter(context!!, hospitalList)
+                recyclerView?.adapter = adapter
+            }
+        })
+
+        return view
+    }
+
+    private fun hostpital() {
+        mReference = FirebaseDatabase.getInstance().getReference("Hospital").orderByChild("state").equalTo(city) as DatabaseReference
+
+        mReference.addValueEventListener(object: ValueEventListener{
+            override fun onCancelled(dataSnapshot: DatabaseError) {
+
+            }
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (child in dataSnapshot.children) {
+                    val hospital: Hospital? = child.getValue(Hospital::class.java)
+                    hospitalList?.add(hospital!!)
+                }
+                val adapter = HomeAdapter(context!!, hospitalList)
+                recyclerView?.adapter = adapter
+            }
+        })
+    }
+
+    private fun userInfo() {
+        mReference = FirebaseDatabase.getInstance().getReference("Users").child(profileid)
+
+        mReference.addValueEventListener(object: ValueEventListener{
+            override fun onCancelled(dataSnapshot: DatabaseError) {
+
+            }
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val user: User? = dataSnapshot.getValue(User::class.java)
+                user?.let {
+                    toolbar_title.text = user.city + " " + user.state
+                    nickname.text = user.nickname
+                    Glide.with(this@HomeFragment).load(user.profile).into(profile)
+                }
+            }
+        })
+    }
+}
