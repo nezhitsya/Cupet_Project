@@ -1,15 +1,15 @@
 package com.example.cupet
 
+import android.app.Activity
 import android.content.ContentResolver
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.webkit.MimeTypeMap
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.cupet.model.User
-import com.google.android.gms.tasks.Continuation
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
@@ -90,6 +90,40 @@ class editProfileActivity : AppCompatActivity() {
     private fun uploadImage() {
         if(mImageUri != null) {
             val filereference: StorageReference = storageRef.child(getFileExtension(mImageUri).toString())
+            var uploadTask = filereference.putFile(mImageUri)
+
+            uploadTask.continueWithTask { task ->
+                if(!task.isSuccessful) {
+
+                }
+                filereference.downloadUrl
+            }.addOnCompleteListener { task ->
+                if(task.isSuccessful) {
+                    val downloadUri = task.result
+                    val url = downloadUri!!.toString()
+
+                    val reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.uid)
+                    var hashMap: HashMap<String, Any> = HashMap()
+                    hashMap.put("profile", url)
+                    reference.updateChildren(hashMap)
+                }
+            }
+
+        } else {
+            Toast.makeText(this, "이미지를 선택해주세요.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            var result: CropImage.ActivityResult  = CropImage.getActivityResult(data)
+            mImageUri = result.uri
+
+            uploadImage()
+        } else {
+            Toast.makeText(this, "다시 시도해주세요.", Toast.LENGTH_SHORT).show();
         }
     }
 }
