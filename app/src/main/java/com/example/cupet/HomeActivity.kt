@@ -59,7 +59,7 @@ class HomeActivity : AppCompatActivity() {
             toolbar_title.text = "게시판"
             search.visibility = View.GONE
             spinner.visibility = View.GONE
-            supportFragmentManager.beginTransaction().replace(R.id.fragment_container, CommunityFragment()).commit()
+            supportFragmentManager.beginTransaction().replace(R.id.fragment_container, CommunityFragment()).addToBackStack(null).commit()
         }
 
         nav_bookmark.setOnClickListener {

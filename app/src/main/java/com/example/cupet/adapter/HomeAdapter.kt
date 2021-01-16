@@ -1,16 +1,17 @@
 package com.example.cupet.adapter
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.cupet.HomeActivity
 import com.example.cupet.R
-import com.example.cupet.fragment.HomeFragment
+import com.example.cupet.fragment.HospitalDetailFragment
 import com.example.cupet.model.Hospital
 
 class HomeAdapter(val context: Context, val hospitalList: ArrayList<Hospital>): RecyclerView.Adapter<HomeAdapter.Holder>() {
@@ -48,14 +49,17 @@ class HomeAdapter(val context: Context, val hospitalList: ArrayList<Hospital>): 
             }
 
             itemView.setOnClickListener {
-                
+                var editor: SharedPreferences.Editor = context.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit()
+                editor.putString("name", mHospital.name)
+                editor.apply()
+
+                val fragment = (context as HomeActivity).supportFragmentManager.beginTransaction()
+                fragment.replace(R.id.fragment_container, HospitalDetailFragment()).addToBackStack(null).commit()
             }
         }
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder?.bind(hospitalList[position], context)
-
-
     }
 }
