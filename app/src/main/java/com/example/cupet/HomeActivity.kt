@@ -43,11 +43,13 @@ class HomeActivity : AppCompatActivity() {
         }
 
         nav_join.setOnClickListener {
+            home_drawer_layout.closeDrawer((GravityCompat.END))
             toolbar_title.text = "즐겨찾는 병원"
             spinner.visibility = View.GONE
         }
 
         nav_cal.setOnClickListener {
+            home_drawer_layout.closeDrawer((GravityCompat.END))
             toolbar_title.text = "진료비 계산기"
             spinner.visibility = View.GONE
         }
@@ -61,11 +63,13 @@ class HomeActivity : AppCompatActivity() {
         }
 
         nav_bookmark.setOnClickListener {
+            home_drawer_layout.closeDrawer((GravityCompat.END))
             toolbar_title.text = "북마크"
             spinner.visibility = View.GONE
         }
 
         nav_mypost.setOnClickListener {
+            home_drawer_layout.closeDrawer((GravityCompat.END))
             toolbar_title.text = "내가 쓴 글"
             spinner.visibility = View.GONE
         }

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cupet.R
@@ -45,10 +46,16 @@ class HomeAdapter(val context: Context, val hospitalList: ArrayList<Hospital>): 
             } else if(mHospital.likes == 1) {
                 likes1?.setImageResource(R.drawable.ic_like)
             }
+
+            itemView.setOnClickListener {
+                
+            }
         }
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder?.bind(hospitalList[position], context)
+
+
     }
 }
