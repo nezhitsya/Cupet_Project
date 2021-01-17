@@ -61,5 +61,7 @@ class WriteFragment : Fragment() {
         hashMap["publisher"] = FirebaseAuth.getInstance().currentUser!!.uid
 
         reference.child(postid).setValue(hashMap)
+
+        activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, CommunityFragment()).addToBackStack(null).commit()
     }
 }
