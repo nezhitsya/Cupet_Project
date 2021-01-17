@@ -1,6 +1,7 @@
 package com.example.cupet.adapter
 
 import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.View
@@ -14,10 +15,12 @@ import com.example.cupet.R
 import com.example.cupet.fragment.HospitalDetailFragment
 import com.example.cupet.model.Hospital
 
+
 class HomeAdapter(val context: Context, val hospitalList: ArrayList<Hospital>): RecyclerView.Adapter<HomeAdapter.Holder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.hospital_item, parent, false)
+
         return Holder(view)
     }
 
