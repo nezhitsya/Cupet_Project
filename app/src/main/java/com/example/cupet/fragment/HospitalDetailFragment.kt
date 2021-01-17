@@ -7,14 +7,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 import com.bumptech.glide.Glide
 
 import com.example.cupet.R
 import com.example.cupet.model.Hospital
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_hospital_detail.*
-import kotlinx.android.synthetic.main.toolbar_item.*
 
 class HospitalDetailFragment : Fragment() {
 
@@ -29,6 +30,15 @@ class HospitalDetailFragment : Fragment() {
 
         val preferences: SharedPreferences = context!!.getSharedPreferences("PREFS", MODE_PRIVATE)
         hospitalName = preferences.getString("name", "none").toString()
+
+        var toolbar: Toolbar = activity!!.findViewById(R.id.toolbar)
+        var toolbar_txt: TextView = toolbar.findViewById(R.id.toolbar_title)
+        var search: ImageView = toolbar.findViewById(R.id.search)
+        var spinner: ImageView = toolbar.findViewById(R.id.spinner)
+
+        search.visibility = View.GONE
+        spinner.visibility = View.GONE
+        toolbar_txt.text = hospitalName
 
         hospitalInfo()
 
