@@ -26,7 +26,6 @@ class editProfileActivity : AppCompatActivity() {
     lateinit var firebaseUser: FirebaseUser
     lateinit var storageRef: StorageReference
     lateinit var mReference: DatabaseReference
-    val auth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
