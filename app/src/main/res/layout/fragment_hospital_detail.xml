@@ -56,7 +56,7 @@
             android:layout_marginTop="10dp" />
 
         <TextView
-            android:id="@+id/score_txt"
+            android:id="@+id/likes_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="평점"
@@ -64,7 +64,35 @@
             android:textColor="@color/colorBlack"
             android:layout_toRightOf="@+id/image"
             android:layout_below="@+id/intro_txt"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="10dp" />
+
+        <ImageView
+            android:id="@+id/likes1"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/intro"
+            android:layout_toRightOf="@+id/likes_txt"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/ic_dislike" />
+
+        <ImageView
+            android:id="@+id/likes2"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/intro"
+            android:layout_toRightOf="@+id/likes1"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/ic_dislike" />
+
+        <ImageView
+            android:id="@+id/likes3"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/intro"
+            android:layout_toRightOf="@+id/likes2"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/ic_dislike" />
         
     </RelativeLayout>
 
