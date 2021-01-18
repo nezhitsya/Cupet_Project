@@ -63,9 +63,13 @@ class CommunityFragment : Fragment() {
         mReference.addValueEventListener(object: ValueEventListener {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val post: Post? = dataSnapshot.getValue(Post::class.java)
-                post?.let {
-                    postList?.add(post)
+                postList.clear()
+
+                for(snapshot: DataSnapshot in dataSnapshot.getChildren()) {
+                    val post: Post? = snapshot.getValue(Post::class.java)
+                    post?.let {
+                        postList?.add(post)
+                    }
                 }
                 val adapter = CommunityAdapter(context!!, postList)
                 recyclerView?.adapter = adapter
