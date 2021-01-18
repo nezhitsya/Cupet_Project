@@ -1,7 +1,6 @@
 package com.example.cupet.adapter
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,8 +15,6 @@ import com.example.cupet.model.User
 import com.google.firebase.database.*
 import java.text.DateFormat
 import java.text.SimpleDateFormat
-import java.util.*
-import java.util.concurrent.TimeUnit
 import kotlin.collections.ArrayList
 
 
