@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 
@@ -17,6 +16,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.fragment_write.*
+import kotlin.collections.HashMap
 
 class WriteFragment : Fragment() {
 
@@ -57,7 +57,7 @@ class WriteFragment : Fragment() {
         hashMap["postid"] = postid
         hashMap["description"] = description
         hashMap["title"] = title
-        hashMap["time"] = System.currentTimeMillis();
+        hashMap["time"] = System.currentTimeMillis()
         hashMap["publisher"] = FirebaseAuth.getInstance().currentUser!!.uid
 
         reference.child(postid).setValue(hashMap)

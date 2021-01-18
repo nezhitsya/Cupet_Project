@@ -14,6 +14,11 @@ import com.example.cupet.R
 import com.example.cupet.model.Post
 import com.example.cupet.model.User
 import com.google.firebase.database.*
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
+import java.util.concurrent.TimeUnit
+import kotlin.collections.ArrayList
 
 
 class CommunityAdapter(val context: Context, val postList: ArrayList<Post>): RecyclerView.Adapter<CommunityAdapter.Holder>() {
@@ -36,9 +41,9 @@ class CommunityAdapter(val context: Context, val postList: ArrayList<Post>): Rec
         var comment = itemView?.findViewById<Button>(R.id.comment)
 
         fun bind(mPost: Post, context: Context) {
-            Log.d("DDD", mPost.title)
             title?.text = mPost.title
-            time?.text = mPost.time.toString()
+            var df: DateFormat = SimpleDateFormat("yy.MM.dd  hh:mm")
+            time?.text = df.format(mPost.time)
             publisherInfo(profile, nickname, mPost.publisher)
         }
     }
