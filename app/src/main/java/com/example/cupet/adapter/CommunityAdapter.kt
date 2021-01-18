@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cupet.R
 import com.example.cupet.model.Post
+import com.example.cupet.model.User
 
 class CommunityAdapter(val context: Context, val postList: ArrayList<Post>): RecyclerView.Adapter<CommunityAdapter.Holder>() {
 
@@ -36,5 +37,7 @@ class CommunityAdapter(val context: Context, val postList: ArrayList<Post>): Rec
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder?.bind(postList[position], context)
+
+
     }
 }

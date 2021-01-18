@@ -1,7 +1,6 @@
 package com.example.cupet.adapter
 
 import android.content.Context
-import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.View

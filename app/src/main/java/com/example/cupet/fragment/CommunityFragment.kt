@@ -14,13 +14,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 import com.example.cupet.R
+import com.example.cupet.adapter.CommunityAdapter
 import com.example.cupet.model.Post
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_community.*
 
 class CommunityFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     var postList = arrayListOf<Post>()
+
+    lateinit var mReference: DatabaseReference
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,6 +52,28 @@ class CommunityFragment : Fragment() {
         linearLayoutManager.stackFromEnd = true
         recyclerView.layoutManager = linearLayoutManager
 
+        postInfo()
+
         return view
+    }
+
+    private fun postInfo() {
+        mReference = FirebaseDatabase.getInstance().getReference("Posts")
+
+        mReference.addValueEventListener(object: ValueEventListener {
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val post: Post? = dataSnapshot.getValue(Post::class.java)
+                post?.let {
+                    postList?.add(post)
+                }
+                val adapter = CommunityAdapter(context!!, postList)
+                recyclerView?.adapter = adapter
+            }
+
+            override fun onCancelled(dataSnapshot: DatabaseError) {
+
+            }
+        })
     }
 }
