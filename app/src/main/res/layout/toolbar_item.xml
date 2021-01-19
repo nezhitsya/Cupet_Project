@@ -28,6 +28,15 @@
         android:visibility="visible"/>
 
     <ImageView
+        android:id="@+id/bookmark"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="33dp"
+        android:src="@drawable/ic_notbookmark"
+        android:visibility="invisible"/>
+
+    <ImageView
         android:id="@+id/drawer"
         android:layout_width="20dp"
         android:layout_height="20dp"

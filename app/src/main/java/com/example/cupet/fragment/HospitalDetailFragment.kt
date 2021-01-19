@@ -64,8 +64,10 @@ class HospitalDetailFragment : Fragment() {
                     } else if(hospital.likes == 2) {
                         likes1?.setImageResource(R.drawable.ic_like)
                         likes2?.setImageResource(R.drawable.ic_like)
-                    } else {
+                    } else if(hospital.likes == 1) {
                         likes1?.setImageResource(R.drawable.ic_like)
+                    } else {
+
                     }
                 }
             }

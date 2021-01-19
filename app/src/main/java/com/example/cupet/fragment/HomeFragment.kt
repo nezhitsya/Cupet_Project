@@ -89,8 +89,10 @@ class HomeFragment : Fragment() {
                 var toolbar_txt: TextView = toolbar.findViewById(R.id.toolbar_title)
                 var search: ImageView = toolbar.findViewById(R.id.search)
                 var spinner: ImageView = toolbar.findViewById(R.id.spinner)
+                var bookmark: ImageView = toolbar.findViewById(R.id.bookmark)
                 search.visibility = View.VISIBLE
                 spinner.visibility = View.VISIBLE
+                bookmark.visibility = View.GONE
 
                 user?.let {
                     stateInfo = user.state.toString()
