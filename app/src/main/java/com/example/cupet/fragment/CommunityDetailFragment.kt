@@ -48,6 +48,13 @@ class CommunityDetailFragment : Fragment() {
         val preferences: SharedPreferences = context!!.getSharedPreferences("PREFS", Context.MODE_PRIVATE)
         postid = preferences.getString("postid", "none").toString()
 
+        comment_img.setOnClickListener {
+            activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, CommentFragment()).addToBackStack(null).commit()
+        }
+        comment.setOnClickListener {
+            activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, CommentFragment()).addToBackStack(null).commit()
+        }
+
         recyclerView = view.findViewById(R.id.recycler_view)
         recyclerView.setHasFixedSize(true)
         val linearLayoutManager = LinearLayoutManager(context)
@@ -77,6 +84,7 @@ class CommunityDetailFragment : Fragment() {
                     description.text = post.description
                     var df: DateFormat = SimpleDateFormat("yy.MM.dd  hh:mm")
                     time.text = df.format(post.time)
+
                     var publisher = post.publisher
                     if (publisher != null) {
                         publisherInfo(publisher)
