@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -82,9 +84,14 @@ class HomeFragment : Fragment() {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val user: User? = dataSnapshot.getValue(User::class.java)
+                var toolbar: Toolbar = activity!!.findViewById(R.id.toolbar)
+                var toolbar_txt: TextView = toolbar.findViewById(R.id.toolbar_title)
                 user?.let {
                     stateInfo = user.state.toString()
                     hospitalInfo()
+                    var city_txt = user.city.toString()
+                    var state_txt = user.state.toString()
+                    toolbar_txt.text = city_txt + " " + state_txt
                 }
             }
 
