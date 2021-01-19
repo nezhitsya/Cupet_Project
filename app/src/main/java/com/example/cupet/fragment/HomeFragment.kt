@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
@@ -86,6 +87,11 @@ class HomeFragment : Fragment() {
                 val user: User? = dataSnapshot.getValue(User::class.java)
                 var toolbar: Toolbar = activity!!.findViewById(R.id.toolbar)
                 var toolbar_txt: TextView = toolbar.findViewById(R.id.toolbar_title)
+                var search: ImageView = toolbar.findViewById(R.id.search)
+                var spinner: ImageView = toolbar.findViewById(R.id.spinner)
+                search.visibility = View.VISIBLE
+                spinner.visibility = View.VISIBLE
+
                 user?.let {
                     stateInfo = user.state.toString()
                     hospitalInfo()

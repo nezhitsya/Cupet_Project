@@ -84,7 +84,6 @@ class HomeActivity : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val user: User? = dataSnapshot.getValue(User::class.java)
                 user?.let {
-                    toolbar_title.text = user.city + " " + user.state
                     nickname.text = user.nickname
                     Glide.with(this@HomeActivity).load(user.profile).into(profile)
                 }
