@@ -56,9 +56,6 @@ class HomeActivity : AppCompatActivity() {
 
         nav_post.setOnClickListener {
             home_drawer_layout.closeDrawer((GravityCompat.END))
-            toolbar_title.text = "게시판"
-            search.visibility = View.GONE
-            spinner.visibility = View.GONE
             supportFragmentManager.beginTransaction().replace(R.id.fragment_container, CommunityFragment()).addToBackStack(null).commit()
         }
 

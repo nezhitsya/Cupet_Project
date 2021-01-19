@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -44,6 +45,16 @@ class CommunityFragment : Fragment() {
         write_txt.setOnClickListener {
             activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, WriteFragment()).addToBackStack(null).commit()
         }
+
+        var toolbar: Toolbar = activity!!.findViewById(R.id.toolbar)
+        var toolbar_txt: TextView = toolbar.findViewById(R.id.toolbar_title)
+        var search: ImageView = toolbar.findViewById(R.id.search)
+        var spinner: ImageView = toolbar.findViewById(R.id.spinner)
+        var bookmark: ImageView = toolbar.findViewById(R.id.bookmark)
+        toolbar_txt.text = "게시판"
+        search.visibility = View.GONE
+        spinner.visibility = View.GONE
+        bookmark.visibility = View.GONE
 
         recyclerView = view.findViewById(R.id.recycler_view)
         recyclerView.setHasFixedSize(true)
