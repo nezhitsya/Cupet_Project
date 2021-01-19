@@ -51,10 +51,12 @@ class CommunityFragment : Fragment() {
         var search: ImageView = toolbar.findViewById(R.id.search)
         var spinner: ImageView = toolbar.findViewById(R.id.spinner)
         var bookmark: ImageView = toolbar.findViewById(R.id.bookmark)
+        var trash: ImageView = toolbar.findViewById(R.id.trash)
         toolbar_txt.text = "게시판"
         search.visibility = View.GONE
         spinner.visibility = View.GONE
         bookmark.visibility = View.GONE
+        trash.visibility = View.GONE
 
         recyclerView = view.findViewById(R.id.recycler_view)
         recyclerView.setHasFixedSize(true)

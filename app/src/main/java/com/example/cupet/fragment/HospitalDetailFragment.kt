@@ -35,9 +35,12 @@ class HospitalDetailFragment : Fragment() {
         var toolbar_txt: TextView = toolbar.findViewById(R.id.toolbar_title)
         var search: ImageView = toolbar.findViewById(R.id.search)
         var spinner: ImageView = toolbar.findViewById(R.id.spinner)
-
+        var bookmark: ImageView = toolbar.findViewById(R.id.bookmark)
+        var trash: ImageView = toolbar.findViewById(R.id.trash)
+        trash.visibility = View.GONE
         search.visibility = View.GONE
         spinner.visibility = View.GONE
+        bookmark.visibility = View.GONE
         toolbar_txt.text = hospitalName
 
         hospitalInfo()

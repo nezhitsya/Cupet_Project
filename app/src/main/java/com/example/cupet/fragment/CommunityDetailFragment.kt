@@ -40,10 +40,12 @@ class CommunityDetailFragment : Fragment() {
         var search: ImageView = toolbar.findViewById(R.id.search)
         var spinner: ImageView = toolbar.findViewById(R.id.spinner)
         var bookmark: ImageView = toolbar.findViewById(R.id.bookmark)
+        var trash: ImageView = toolbar.findViewById(R.id.trash)
         toolbar_txt.text = "게시글"
         search.visibility = View.GONE
         spinner.visibility = View.GONE
         bookmark.visibility = View.VISIBLE
+        trash.visibility = View.GONE
 
         val preferences: SharedPreferences = context!!.getSharedPreferences("PREFS", Context.MODE_PRIVATE)
         postid = preferences.getString("postid", "none").toString()

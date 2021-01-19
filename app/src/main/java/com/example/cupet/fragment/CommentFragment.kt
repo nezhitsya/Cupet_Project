@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.RecyclerView
 
 import com.example.cupet.R
@@ -28,6 +30,18 @@ class CommentFragment : Fragment() {
 
         var comment: EditText = view.findViewById(R.id.comment)
         var send: TextView = view.findViewById(R.id.send)
+
+        var toolbar: Toolbar = activity!!.findViewById(R.id.toolbar)
+        var toolbar_txt: TextView = toolbar.findViewById(R.id.toolbar_title)
+        var search: ImageView = toolbar.findViewById(R.id.search)
+        var spinner: ImageView = toolbar.findViewById(R.id.spinner)
+        var bookmark: ImageView = toolbar.findViewById(R.id.bookmark)
+        var trash: ImageView = toolbar.findViewById(R.id.trash)
+        toolbar_txt.text = "댓글"
+        search.visibility = View.GONE
+        spinner.visibility = View.GONE
+        bookmark.visibility = View.GONE
+        trash.visibility = View.GONE
 
         return view
     }
