@@ -33,7 +33,7 @@ class CommunityDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var view: View =  inflater.inflate(R.layout.fragment_community_detail, container, false)
+        var view: View = inflater.inflate(R.layout.fragment_community_detail, container, false)
 
         var toolbar: Toolbar = activity!!.findViewById(R.id.toolbar)
         var toolbar_txt: TextView = toolbar.findViewById(R.id.toolbar_title)
