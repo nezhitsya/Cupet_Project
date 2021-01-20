@@ -17,6 +17,8 @@ import com.bumptech.glide.Glide
 import com.example.cupet.R
 import com.example.cupet.model.Post
 import com.example.cupet.model.User
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_community_detail.*
 import java.text.DateFormat
@@ -28,6 +30,7 @@ class CommunityDetailFragment : Fragment() {
 
     lateinit var mReference: DatabaseReference
     lateinit var postid: String
+    lateinit var firebaseUser: FirebaseUser
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,6 +50,7 @@ class CommunityDetailFragment : Fragment() {
         bookmark.visibility = View.VISIBLE
         trash.visibility = View.GONE
 
+        firebaseUser = FirebaseAuth.getInstance().currentUser!!
         val preferences: SharedPreferences = context!!.getSharedPreferences("PREFS", Context.MODE_PRIVATE)
         postid = preferences.getString("postid", "none").toString()
 
@@ -55,6 +59,14 @@ class CommunityDetailFragment : Fragment() {
         }
         comment.setOnClickListener {
             activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, CommentFragment()).addToBackStack(null).commit()
+        }
+
+        bookmark.setOnClickListener {
+            if(bookmark.getTag().equals("bookmarked")) {
+                FirebaseDatabase.getInstance().getReference().child("Bookmark").child(firebaseUser.uid).child(postid).setValue(true)
+            } else {
+                FirebaseDatabase.getInstance().getReference().child("Bookmark").child(firebaseUser.uid).child(postid).removeValue()
+            }
         }
 
         recyclerView = view.findViewById(R.id.recycler_view)
@@ -69,6 +81,7 @@ class CommunityDetailFragment : Fragment() {
         }
 
         postInfo()
+        bookmarked(postid, bookmark)
 
         return view
     }
@@ -102,14 +115,35 @@ class CommunityDetailFragment : Fragment() {
 
     private fun publisherInfo(publisher: String) {
 
-        var reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Users").child(publisher)
+        mReference = FirebaseDatabase.getInstance().getReference("Users").child(publisher)
 
-        reference.addValueEventListener(object: ValueEventListener {
+        mReference.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val user: User? = dataSnapshot.getValue(User::class.java)
                 user?.let {
                     nickname.text = user.nickname
                     Glide.with(context!!).load(user.profile).into(profile)
+                }
+            }
+
+            override fun onCancelled(dataSnapshot: DatabaseError) {
+
+            }
+        })
+    }
+
+    private fun bookmarked(postid: String, imageView: ImageView) {
+        firebaseUser = FirebaseAuth.getInstance().currentUser!!
+        mReference = FirebaseDatabase.getInstance().getReference().child("Bookmark").child(firebaseUser.uid)
+
+        mReference.addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if(dataSnapshot.child(postid).exists()) {
+                    imageView.setImageResource(R.drawable.ic_bookmarked)
+                    imageView.setTag("bookmarked")
+                } else {
+                    imageView.setImageResource(R.drawable.ic_notbookmark)
+                    imageView.setTag("not_bookmark")
                 }
             }
 

@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -42,7 +43,11 @@ class CommentFragment : Fragment() {
         var send: TextView = view.findViewById(R.id.send)
 
         send.setOnClickListener {
-            postComment()
+            if(comment.text.toString().equals("")) {
+                Toast.makeText(context, "댓글을 입력해주세요.", Toast.LENGTH_SHORT).show()
+            } else {
+                postComment()
+            }
         }
 
         var toolbar: Toolbar = activity!!.findViewById(R.id.toolbar)
