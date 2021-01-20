@@ -71,7 +71,7 @@ class CommentFragment : Fragment() {
 
     private fun postComment() {
         var comment = comment.text.toString()
-        var reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Comment")
+        var reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Comment").child(postid)
         val commentid: String = reference.push().key.toString()
 
         val hashMap: HashMap<String, Any> = HashMap()
@@ -79,7 +79,7 @@ class CommentFragment : Fragment() {
         hashMap["commentid"] = commentid
         hashMap["publisher"] = FirebaseAuth.getInstance().currentUser!!.uid
 
-        reference.child(postid).child(commentid).setValue(hashMap)
+        reference.child(commentid).setValue(hashMap)
     }
 
     private fun getComment() {
@@ -92,7 +92,7 @@ class CommentFragment : Fragment() {
                     val comment: Comment? = child.getValue(Comment::class.java)
                     commentList?.add(comment!!)
                 }
-                val adapter = CommentAdapter(context!!, commentList, postid)
+                val adapter = CommentAdapter(context!!, commentList)
                 recyclerView?.adapter = adapter
             }
 
