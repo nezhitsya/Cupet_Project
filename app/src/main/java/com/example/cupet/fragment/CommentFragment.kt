@@ -37,7 +37,7 @@ class CommentFragment : Fragment() {
         var view: View = inflater.inflate(R.layout.fragment_comment, container, false)
 
         val preferences: SharedPreferences = context!!.getSharedPreferences("PREFS", Context.MODE_PRIVATE)
-        postid = preferences.getString("name", "none").toString()
+        postid = preferences.getString("postid", "none").toString()
 
         var comment: EditText = view.findViewById(R.id.comment)
         var send: TextView = view.findViewById(R.id.send)

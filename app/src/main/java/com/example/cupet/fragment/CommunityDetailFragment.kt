@@ -92,6 +92,7 @@ class CommunityDetailFragment : Fragment() {
         }
 
         postInfo()
+        getComment()
         bookmarked(postid, bookmark)
 
         return view
