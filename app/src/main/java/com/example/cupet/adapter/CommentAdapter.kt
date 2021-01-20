@@ -1,6 +1,7 @@
 package com.example.cupet.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +17,7 @@ import com.google.firebase.database.*
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 
-class CommentAdapter(val context: Context, val commentList: ArrayList<Comment>): RecyclerView.Adapter<CommentAdapter.Holder>() {
+class CommentAdapter(val context: Context, val commentList: ArrayList<Comment>, val postid: String): RecyclerView.Adapter<CommentAdapter.Holder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.comment_item, parent, false)
@@ -41,6 +42,7 @@ class CommentAdapter(val context: Context, val commentList: ArrayList<Comment>):
             publisherInfo(profile, nickname, mComment.publisher)
 
             option?.setOnClickListener{
+                Log.d("ldy", "Option clicked!")
             }
         }
     }

@@ -37,7 +37,7 @@ class HomeAdapter(val context: Context, val hospitalList: ArrayList<Hospital>): 
 
         fun bind(mHospital: Hospital, context: Context) {
             hospital_name?.text = mHospital.name
-            address?.text = mHospital.city + mHospital.state
+            address?.text = mHospital.address
             hospital_img?.let { Glide.with(context).load(mHospital.image).into(it) }
             if(mHospital.likes == 3) {
                 likes1?.setImageResource(R.drawable.ic_like)
