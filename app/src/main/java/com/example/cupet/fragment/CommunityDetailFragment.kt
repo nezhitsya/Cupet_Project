@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 import com.example.cupet.R
+import com.example.cupet.adapter.CommentAdapter
+import com.example.cupet.model.Comment
 import com.example.cupet.model.Post
 import com.example.cupet.model.User
 import com.google.firebase.auth.FirebaseAuth
@@ -27,6 +29,7 @@ import java.text.SimpleDateFormat
 class CommunityDetailFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
+    var commentList = arrayListOf<Comment>()
 
     lateinit var mReference: DatabaseReference
     lateinit var postid: String
@@ -44,11 +47,19 @@ class CommunityDetailFragment : Fragment() {
         var spinner: ImageView = toolbar.findViewById(R.id.spinner)
         var bookmark: ImageView = toolbar.findViewById(R.id.bookmark)
         var trash: ImageView = toolbar.findViewById(R.id.trash)
-        toolbar_txt.text = "게시글"
         search.visibility = View.GONE
         spinner.visibility = View.GONE
         bookmark.visibility = View.VISIBLE
         trash.visibility = View.GONE
+        toolbar_txt.text = "게시글"
+
+//        when(toolbar_txt.text) {
+//            "북마크" -> getBookmark()
+//            "내 글" -> getMyPost()
+//        }
+
+        var comment_img: ImageView = view.findViewById(R.id.comment_img)
+        var comment: TextView = view.findViewById(R.id.comment)
 
         firebaseUser = FirebaseAuth.getInstance().currentUser!!
         val preferences: SharedPreferences = context!!.getSharedPreferences("PREFS", Context.MODE_PRIVATE)
@@ -132,6 +143,30 @@ class CommunityDetailFragment : Fragment() {
         })
     }
 
+    private fun getComment() {
+        mReference = FirebaseDatabase.getInstance().getReference("Comment").child(postid)
+
+        mReference.addValueEventListener(object: ValueEventListener {
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                commentList.clear()
+
+                for(snapshot: DataSnapshot in dataSnapshot.children) {
+                    val comment: Comment? = snapshot.getValue(Comment::class.java)
+                    comment?.let {
+                        commentList.add(comment)
+                    }
+                }
+                val adapter = CommentAdapter(context!!, commentList)
+                recyclerView.adapter = adapter
+            }
+
+            override fun onCancelled(dataSnapshot: DatabaseError) {
+
+            }
+        })
+    }
+
     private fun bookmarked(postid: String, imageView: ImageView) {
         firebaseUser = FirebaseAuth.getInstance().currentUser!!
         mReference = FirebaseDatabase.getInstance().getReference().child("Bookmark").child(firebaseUser.uid)
@@ -145,6 +180,25 @@ class CommunityDetailFragment : Fragment() {
                     imageView.setImageResource(R.drawable.ic_notbookmark)
                     imageView.setTag("not_bookmark")
                 }
+            }
+
+            override fun onCancelled(dataSnapshot: DatabaseError) {
+
+            }
+        })
+    }
+
+    private fun getBookmark() {
+
+    }
+
+    private fun getMyPost() {
+        firebaseUser = FirebaseAuth.getInstance().currentUser!!
+        mReference = FirebaseDatabase.getInstance().getReference("Posts")
+        var query: Query = mReference.orderByChild("publisher").equalTo(firebaseUser.uid)
+
+        query.addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
             }
 
             override fun onCancelled(dataSnapshot: DatabaseError) {

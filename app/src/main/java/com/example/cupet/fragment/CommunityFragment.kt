@@ -78,7 +78,7 @@ class CommunityFragment : Fragment() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 postList.clear()
 
-                for(snapshot: DataSnapshot in dataSnapshot.getChildren()) {
+                for(snapshot: DataSnapshot in dataSnapshot.children) {
                     val post: Post? = snapshot.getValue(Post::class.java)
                     post?.let {
                         postList?.add(post)

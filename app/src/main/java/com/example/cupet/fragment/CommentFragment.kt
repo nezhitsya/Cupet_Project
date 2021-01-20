@@ -83,6 +83,7 @@ class CommentFragment : Fragment() {
         hashMap["comment"] = comment
         hashMap["commentid"] = commentid
         hashMap["publisher"] = FirebaseAuth.getInstance().currentUser!!.uid
+        hashMap["time"] = System.currentTimeMillis()
 
         reference.child(commentid).setValue(hashMap)
     }
@@ -91,14 +92,18 @@ class CommentFragment : Fragment() {
         mReference = FirebaseDatabase.getInstance().getReference("Comment").child(postid)
 
         mReference.addValueEventListener(object: ValueEventListener {
+
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 commentList.clear()
-                for (child in dataSnapshot.children) {
-                    val comment: Comment? = child.getValue(Comment::class.java)
-                    commentList?.add(comment!!)
+
+                for(snapshot: DataSnapshot in dataSnapshot.children) {
+                    val comment: Comment? = snapshot.getValue(Comment::class.java)
+                    comment?.let {
+                        commentList.add(comment)
+                    }
                 }
                 val adapter = CommentAdapter(context!!, commentList)
-                recyclerView?.adapter = adapter
+                recyclerView.adapter = adapter
             }
 
             override fun onCancelled(dataSnapshot: DatabaseError) {

@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/profile"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:textColor="@color/colorBlack" />
 
     <TextView
@@ -33,7 +33,9 @@
         android:layout_below="@+id/time"
         android:layout_toRightOf="@id/profile"
         android:textColor="@color/colorBlack"
-        android:textSize="18dp" />
+        android:textSize="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp" />
 
     <Button
         android:id="@+id/option"

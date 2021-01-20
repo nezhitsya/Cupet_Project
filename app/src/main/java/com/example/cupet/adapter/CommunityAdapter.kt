@@ -20,7 +20,6 @@ import java.text.DateFormat
 import java.text.SimpleDateFormat
 import kotlin.collections.ArrayList
 
-
 class CommunityAdapter(val context: Context, val postList: ArrayList<Post>): RecyclerView.Adapter<CommunityAdapter.Holder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -62,9 +61,7 @@ class CommunityAdapter(val context: Context, val postList: ArrayList<Post>): Rec
     }
 
     private fun publisherInfo(profile: ImageView?, nickname: TextView?, userid: String?) {
-        var reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Users").child(
-            userid.toString()
-        )
+        var reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Users").child(userid.toString())
 
         reference.addValueEventListener(object: ValueEventListener {
 

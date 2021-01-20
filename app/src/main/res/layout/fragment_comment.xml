@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     tools:context=".fragment.CommentFragment">
 
     <androidx.core.widget.NestedScrollView
@@ -27,7 +28,7 @@
                 android:textColor="@color/colorBlack" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/top_recycler_view"
+                android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp" />
