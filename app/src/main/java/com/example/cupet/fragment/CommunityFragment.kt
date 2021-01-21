@@ -104,6 +104,16 @@ class CommunityFragment : Fragment() {
     }
 
     private fun getBookmark() {
+        var toolbar: Toolbar = activity!!.findViewById(R.id.toolbar)
+        var search: ImageView = toolbar.findViewById(R.id.search)
+        var spinner: ImageView = toolbar.findViewById(R.id.spinner)
+        var bookmark: ImageView = toolbar.findViewById(R.id.bookmark)
+        var trash: ImageView = toolbar.findViewById(R.id.trash)
+        search.visibility = View.GONE
+        spinner.visibility = View.GONE
+        bookmark.visibility = View.GONE
+        trash.visibility = View.GONE
+
         bookmarkList = ArrayList()
 
         var firebaseUser: FirebaseUser = FirebaseAuth.getInstance().currentUser!!

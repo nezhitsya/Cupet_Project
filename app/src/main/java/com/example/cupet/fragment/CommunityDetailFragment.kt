@@ -49,12 +49,23 @@ class CommunityDetailFragment : Fragment() {
         var trash: ImageView = toolbar.findViewById(R.id.trash)
         search.visibility = View.GONE
         spinner.visibility = View.GONE
-        bookmark.visibility = View.VISIBLE
-        trash.visibility = View.GONE
-        toolbar_txt.text = "게시글"
 
         var comment_img: ImageView = view.findViewById(R.id.comment_img)
         var comment: TextView = view.findViewById(R.id.comment)
+
+        if(toolbar_txt.text == "게시판") {
+            toolbar_txt.text = "게시판"
+            bookmark.visibility = View.VISIBLE
+            trash.visibility = View.GONE
+        } else if(toolbar_txt.text == "북마크") {
+            toolbar_txt.text = "북마크"
+            bookmark.visibility = View.VISIBLE
+            trash.visibility = View.GONE
+        } else if(toolbar_txt.text == "내가 쓴 글") {
+            toolbar_txt.text = "내가 쓴 글"
+            bookmark.visibility = View.GONE
+            trash.visibility = View.VISIBLE
+        }
 
         firebaseUser = FirebaseAuth.getInstance().currentUser!!
         val preferences: SharedPreferences = context!!.getSharedPreferences("PREFS", Context.MODE_PRIVATE)
