@@ -1,11 +1,13 @@
 package com.example.cupet.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.FragmentActivity
@@ -50,15 +52,6 @@ class CommunityFragment : Fragment() {
 
         var toolbar: Toolbar = activity!!.findViewById(R.id.toolbar)
         var toolbar_txt: TextView = toolbar.findViewById(R.id.toolbar_title)
-//        var search: ImageView = toolbar.findViewById(R.id.search)
-//        var spinner: ImageView = toolbar.findViewById(R.id.spinner)
-//        var bookmark: ImageView = toolbar.findViewById(R.id.bookmark)
-//        var trash: ImageView = toolbar.findViewById(R.id.trash)
-////        toolbar_txt.text = "게시판"
-//        search.visibility = View.GONE
-//        spinner.visibility = View.GONE
-//        bookmark.visibility = View.GONE
-//        trash.visibility = View.GONE
 
         when(toolbar_txt.text) {
             "게시판" -> postInfo()
@@ -73,19 +66,15 @@ class CommunityFragment : Fragment() {
         linearLayoutManager.stackFromEnd = true
         recyclerView.layoutManager = linearLayoutManager
 
-//        postInfo()
-
         return view
     }
 
     private fun postInfo() {
         var toolbar: Toolbar = activity!!.findViewById(R.id.toolbar)
-        var toolbar_txt: TextView = toolbar.findViewById(R.id.toolbar_title)
         var search: ImageView = toolbar.findViewById(R.id.search)
         var spinner: ImageView = toolbar.findViewById(R.id.spinner)
         var bookmark: ImageView = toolbar.findViewById(R.id.bookmark)
         var trash: ImageView = toolbar.findViewById(R.id.trash)
-        toolbar_txt.text = "게시판"
         search.visibility = View.GONE
         spinner.visibility = View.GONE
         bookmark.visibility = View.GONE
@@ -115,18 +104,6 @@ class CommunityFragment : Fragment() {
     }
 
     private fun getBookmark() {
-        var toolbar: Toolbar = activity!!.findViewById(R.id.toolbar)
-        var toolbar_txt: TextView = toolbar.findViewById(R.id.toolbar_title)
-        var search: ImageView = toolbar.findViewById(R.id.search)
-        var spinner: ImageView = toolbar.findViewById(R.id.spinner)
-        var bookmark: ImageView = toolbar.findViewById(R.id.bookmark)
-        var trash: ImageView = toolbar.findViewById(R.id.trash)
-        search.visibility = View.GONE
-        spinner.visibility = View.GONE
-        bookmark.visibility = View.GONE
-        trash.visibility = View.GONE
-        toolbar_txt.text = "북마크"
-
         bookmarkList = ArrayList()
 
         var firebaseUser: FirebaseUser = FirebaseAuth.getInstance().currentUser!!
@@ -135,7 +112,6 @@ class CommunityFragment : Fragment() {
         mReference.addValueEventListener(object: ValueEventListener {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-
                 for(snapshot: DataSnapshot in dataSnapshot.children) {
                     snapshot.key?.let { bookmarkList.add(it) }
                 }
@@ -156,11 +132,10 @@ class CommunityFragment : Fragment() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 postList.clear()
                 for(snapshot: DataSnapshot in dataSnapshot.children) {
-                    val post: Post? = dataSnapshot.getValue(Post::class.java)
+                    val post: Post? = snapshot.getValue(Post::class.java)
 
                     for(id: String in bookmarkList) {
-                        var postid = post?.postid
-                        if(postid.equals(id)) {
+                        if((post?.postid).equals(id)) {
                             postList?.add(post!!)
                         }
                     }

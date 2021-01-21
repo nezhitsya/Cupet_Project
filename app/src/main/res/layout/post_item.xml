@@ -16,6 +16,7 @@
             android:layout_height="wrap_content"
             android:textSize="15dp"
             android:textColor="@color/colorBlack"
+            android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp" />
 
         <de.hdodenhof.circleimageview.CircleImageView

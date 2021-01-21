@@ -68,10 +68,10 @@ class CommunityDetailFragment : Fragment() {
         }
 
         bookmark.setOnClickListener {
-            if(bookmark.getTag().equals("bookmarked")) {
-                FirebaseDatabase.getInstance().getReference().child("Bookmark").child(firebaseUser.uid).child(postid).setValue(true)
+            if(bookmark.tag == "not_bookmark") {
+                FirebaseDatabase.getInstance().reference.child("Bookmark").child(firebaseUser.uid).child(postid).setValue(true)
             } else {
-                FirebaseDatabase.getInstance().getReference().child("Bookmark").child(firebaseUser.uid).child(postid).removeValue()
+                FirebaseDatabase.getInstance().reference.child("Bookmark").child(firebaseUser.uid).child(postid).removeValue()
             }
         }
 
@@ -161,16 +161,16 @@ class CommunityDetailFragment : Fragment() {
 
     private fun bookmarked(postid: String, imageView: ImageView) {
         firebaseUser = FirebaseAuth.getInstance().currentUser!!
-        mReference = FirebaseDatabase.getInstance().getReference("Bookmark").child(firebaseUser.uid)
+        mReference = FirebaseDatabase.getInstance().getReference().child("Bookmark").child(firebaseUser.uid)
 
         mReference.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if(dataSnapshot.child(postid).exists()) {
                     imageView.setImageResource(R.drawable.ic_bookmarked)
-                    imageView.setTag("bookmarked")
+                    imageView.tag = "bookmarked"
                 } else {
                     imageView.setImageResource(R.drawable.ic_notbookmark)
-                    imageView.setTag("not_bookmark")
+                    imageView.tag = "not_bookmark"
                 }
             }
 
