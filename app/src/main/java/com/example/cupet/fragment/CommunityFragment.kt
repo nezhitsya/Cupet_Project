@@ -54,7 +54,7 @@ class CommunityFragment : Fragment() {
 //        var spinner: ImageView = toolbar.findViewById(R.id.spinner)
 //        var bookmark: ImageView = toolbar.findViewById(R.id.bookmark)
 //        var trash: ImageView = toolbar.findViewById(R.id.trash)
-//        toolbar_txt.text = "게시판"
+////        toolbar_txt.text = "게시판"
 //        search.visibility = View.GONE
 //        spinner.visibility = View.GONE
 //        bookmark.visibility = View.GONE
@@ -79,6 +79,18 @@ class CommunityFragment : Fragment() {
     }
 
     private fun postInfo() {
+        var toolbar: Toolbar = activity!!.findViewById(R.id.toolbar)
+        var toolbar_txt: TextView = toolbar.findViewById(R.id.toolbar_title)
+        var search: ImageView = toolbar.findViewById(R.id.search)
+        var spinner: ImageView = toolbar.findViewById(R.id.spinner)
+        var bookmark: ImageView = toolbar.findViewById(R.id.bookmark)
+        var trash: ImageView = toolbar.findViewById(R.id.trash)
+        toolbar_txt.text = "게시판"
+        search.visibility = View.GONE
+        spinner.visibility = View.GONE
+        bookmark.visibility = View.GONE
+        trash.visibility = View.GONE
+
         mReference = FirebaseDatabase.getInstance().getReference("Posts")
 
         mReference.addValueEventListener(object: ValueEventListener {
@@ -164,6 +176,28 @@ class CommunityFragment : Fragment() {
     }
 
     private fun getMyPost() {
+        var firebaseUser: FirebaseUser = FirebaseAuth.getInstance().currentUser!!
+        mReference = FirebaseDatabase.getInstance().getReference("Posts")
 
+        mReference.addValueEventListener(object: ValueEventListener {
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                postList.clear()
+
+                for(snapshot: DataSnapshot in dataSnapshot.children) {
+                    val post: Post? = snapshot.getValue(Post::class.java)
+
+                    if((post?.publisher).equals(firebaseUser.uid)) {
+                        postList?.add(post!!)
+                    }
+                }
+                val adapter = CommunityAdapter(context!!, postList)
+                recyclerView?.adapter = adapter
+            }
+
+            override fun onCancelled(dataSnapshot: DatabaseError) {
+
+            }
+        })
     }
 }

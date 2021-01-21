@@ -46,16 +46,23 @@ class HomeActivity : AppCompatActivity() {
             home_drawer_layout.closeDrawer((GravityCompat.END))
             toolbar_title.text = "즐겨찾는 병원"
             spinner.visibility = View.GONE
+            search.visibility = View.GONE
+            bookmark.visibility = View.GONE
+            trash.visibility = View.GONE
         }
 
         nav_cal.setOnClickListener {
             home_drawer_layout.closeDrawer((GravityCompat.END))
             toolbar_title.text = "진료비 계산기"
             spinner.visibility = View.GONE
+            search.visibility = View.GONE
+            bookmark.visibility = View.GONE
+            trash.visibility = View.GONE
         }
 
         nav_post.setOnClickListener {
             home_drawer_layout.closeDrawer((GravityCompat.END))
+            toolbar_title.text = "게시판"
             supportFragmentManager.beginTransaction().replace(R.id.fragment_container, CommunityFragment()).addToBackStack(null).commit()
         }
 
@@ -63,12 +70,22 @@ class HomeActivity : AppCompatActivity() {
             home_drawer_layout.closeDrawer((GravityCompat.END))
             toolbar_title.text = "북마크"
             spinner.visibility = View.GONE
+            search.visibility = View.GONE
+            bookmark.visibility = View.GONE
+            trash.visibility = View.GONE
+
+            supportFragmentManager.beginTransaction().replace(R.id.fragment_container, CommunityFragment()).addToBackStack(null).commit()
         }
 
         nav_mypost.setOnClickListener {
             home_drawer_layout.closeDrawer((GravityCompat.END))
             toolbar_title.text = "내가 쓴 글"
             spinner.visibility = View.GONE
+            search.visibility = View.GONE
+            bookmark.visibility = View.GONE
+            trash.visibility = View.GONE
+
+            supportFragmentManager.beginTransaction().replace(R.id.fragment_container, CommunityFragment()).addToBackStack(null).commit()
         }
 
         userInfo()
