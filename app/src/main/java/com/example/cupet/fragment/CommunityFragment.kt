@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cupet.R
 import com.example.cupet.adapter.CommunityAdapter
 import com.example.cupet.model.Post
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_community.*
@@ -25,6 +26,7 @@ class CommunityFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     var postList = arrayListOf<Post>()
+    var bookmarkList = arrayListOf<String>()
 
     lateinit var mReference: DatabaseReference
 
@@ -48,15 +50,21 @@ class CommunityFragment : Fragment() {
 
         var toolbar: Toolbar = activity!!.findViewById(R.id.toolbar)
         var toolbar_txt: TextView = toolbar.findViewById(R.id.toolbar_title)
-        var search: ImageView = toolbar.findViewById(R.id.search)
-        var spinner: ImageView = toolbar.findViewById(R.id.spinner)
-        var bookmark: ImageView = toolbar.findViewById(R.id.bookmark)
-        var trash: ImageView = toolbar.findViewById(R.id.trash)
-        toolbar_txt.text = "게시판"
-        search.visibility = View.GONE
-        spinner.visibility = View.GONE
-        bookmark.visibility = View.GONE
-        trash.visibility = View.GONE
+//        var search: ImageView = toolbar.findViewById(R.id.search)
+//        var spinner: ImageView = toolbar.findViewById(R.id.spinner)
+//        var bookmark: ImageView = toolbar.findViewById(R.id.bookmark)
+//        var trash: ImageView = toolbar.findViewById(R.id.trash)
+//        toolbar_txt.text = "게시판"
+//        search.visibility = View.GONE
+//        spinner.visibility = View.GONE
+//        bookmark.visibility = View.GONE
+//        trash.visibility = View.GONE
+
+        when(toolbar_txt.text) {
+            "게시판" -> postInfo()
+            "북마크" -> getBookmark()
+            "내가 쓴 글" -> getMyPost()
+        }
 
         recyclerView = view.findViewById(R.id.recycler_view)
         recyclerView.setHasFixedSize(true)
@@ -65,7 +73,7 @@ class CommunityFragment : Fragment() {
         linearLayoutManager.stackFromEnd = true
         recyclerView.layoutManager = linearLayoutManager
 
-        postInfo()
+//        postInfo()
 
         return view
     }
@@ -92,5 +100,70 @@ class CommunityFragment : Fragment() {
 
             }
         })
+    }
+
+    private fun getBookmark() {
+        var toolbar: Toolbar = activity!!.findViewById(R.id.toolbar)
+        var toolbar_txt: TextView = toolbar.findViewById(R.id.toolbar_title)
+        var search: ImageView = toolbar.findViewById(R.id.search)
+        var spinner: ImageView = toolbar.findViewById(R.id.spinner)
+        var bookmark: ImageView = toolbar.findViewById(R.id.bookmark)
+        var trash: ImageView = toolbar.findViewById(R.id.trash)
+        search.visibility = View.GONE
+        spinner.visibility = View.GONE
+        bookmark.visibility = View.GONE
+        trash.visibility = View.GONE
+        toolbar_txt.text = "북마크"
+
+        bookmarkList = ArrayList()
+
+        var firebaseUser: FirebaseUser = FirebaseAuth.getInstance().currentUser!!
+        mReference = FirebaseDatabase.getInstance().getReference().child("Bookmark").child(firebaseUser.uid)
+
+        mReference.addValueEventListener(object: ValueEventListener {
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                for(snapshot: DataSnapshot in dataSnapshot.children) {
+                    snapshot.key?.let { bookmarkList.add(it) }
+                }
+                readBookmark()
+            }
+
+            override fun onCancelled(dataSnapshot: DatabaseError) {
+
+            }
+        })
+    }
+
+    private fun readBookmark() {
+        mReference = FirebaseDatabase.getInstance().getReference("Posts")
+
+        mReference.addValueEventListener(object: ValueEventListener {
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                postList.clear()
+                for(snapshot: DataSnapshot in dataSnapshot.children) {
+                    val post: Post? = dataSnapshot.getValue(Post::class.java)
+
+                    for(id: String in bookmarkList) {
+                        var postid = post?.postid
+                        if(postid.equals(id)) {
+                            postList?.add(post!!)
+                        }
+                    }
+                    val adapter = CommunityAdapter(context!!, postList)
+                    recyclerView?.adapter = adapter
+                }
+            }
+
+            override fun onCancelled(dataSnapshot: DatabaseError) {
+
+            }
+        })
+    }
+
+    private fun getMyPost() {
+
     }
 }
