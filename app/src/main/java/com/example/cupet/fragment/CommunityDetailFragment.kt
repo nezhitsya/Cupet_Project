@@ -53,11 +53,6 @@ class CommunityDetailFragment : Fragment() {
         trash.visibility = View.GONE
         toolbar_txt.text = "게시글"
 
-//        when(toolbar_txt.text) {
-//            "북마크" -> getBookmark()
-//            "내 글" -> getMyPost()
-//        }
-
         var comment_img: ImageView = view.findViewById(R.id.comment_img)
         var comment: TextView = view.findViewById(R.id.comment)
 
@@ -86,10 +81,6 @@ class CommunityDetailFragment : Fragment() {
         linearLayoutManager.reverseLayout = true
         linearLayoutManager.stackFromEnd = true
         recyclerView.layoutManager = linearLayoutManager
-
-        bookmark.setOnClickListener {
-            bookmark.setImageResource(R.drawable.ic_bookmarked)
-        }
 
         postInfo()
         getComment()
@@ -170,7 +161,7 @@ class CommunityDetailFragment : Fragment() {
 
     private fun bookmarked(postid: String, imageView: ImageView) {
         firebaseUser = FirebaseAuth.getInstance().currentUser!!
-        mReference = FirebaseDatabase.getInstance().getReference().child("Bookmark").child(firebaseUser.uid)
+        mReference = FirebaseDatabase.getInstance().getReference("Bookmark").child(firebaseUser.uid)
 
         mReference.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -181,25 +172,6 @@ class CommunityDetailFragment : Fragment() {
                     imageView.setImageResource(R.drawable.ic_notbookmark)
                     imageView.setTag("not_bookmark")
                 }
-            }
-
-            override fun onCancelled(dataSnapshot: DatabaseError) {
-
-            }
-        })
-    }
-
-    private fun getBookmark() {
-
-    }
-
-    private fun getMyPost() {
-        firebaseUser = FirebaseAuth.getInstance().currentUser!!
-        mReference = FirebaseDatabase.getInstance().getReference("Posts")
-        var query: Query = mReference.orderByChild("publisher").equalTo(firebaseUser.uid)
-
-        query.addValueEventListener(object: ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
             }
 
             override fun onCancelled(dataSnapshot: DatabaseError) {
