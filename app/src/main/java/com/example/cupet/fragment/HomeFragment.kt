@@ -91,6 +91,8 @@ class HomeFragment : Fragment() {
                 var spinner: ImageView = toolbar.findViewById(R.id.spinner)
                 var bookmark: ImageView = toolbar.findViewById(R.id.bookmark)
                 var trash: ImageView = toolbar.findViewById(R.id.trash)
+                var myhospital: ImageView = toolbar.findViewById(R.id.myhospital)
+                myhospital.visibility = View.GONE
                 search.visibility = View.VISIBLE
                 spinner.visibility = View.VISIBLE
                 bookmark.visibility = View.GONE

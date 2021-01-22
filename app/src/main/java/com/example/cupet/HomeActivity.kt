@@ -49,6 +49,7 @@ class HomeActivity : AppCompatActivity() {
             search.visibility = View.GONE
             bookmark.visibility = View.GONE
             trash.visibility = View.GONE
+            myhospital.visibility = View.GONE
         }
 
         nav_cal.setOnClickListener {
@@ -58,6 +59,7 @@ class HomeActivity : AppCompatActivity() {
             search.visibility = View.GONE
             bookmark.visibility = View.GONE
             trash.visibility = View.GONE
+            myhospital.visibility = View.GONE
         }
 
         nav_post.setOnClickListener {
@@ -73,6 +75,7 @@ class HomeActivity : AppCompatActivity() {
             search.visibility = View.GONE
             bookmark.visibility = View.GONE
             trash.visibility = View.GONE
+            myhospital.visibility = View.GONE
 
             supportFragmentManager.beginTransaction().replace(R.id.fragment_container, CommunityFragment()).addToBackStack(null).commit()
         }
@@ -84,6 +87,7 @@ class HomeActivity : AppCompatActivity() {
             search.visibility = View.GONE
             bookmark.visibility = View.GONE
             trash.visibility = View.GONE
+            myhospital.visibility = View.GONE
 
             supportFragmentManager.beginTransaction().replace(R.id.fragment_container, CommunityFragment()).addToBackStack(null).commit()
         }

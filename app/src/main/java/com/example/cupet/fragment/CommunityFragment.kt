@@ -75,6 +75,8 @@ class CommunityFragment : Fragment() {
         var spinner: ImageView = toolbar.findViewById(R.id.spinner)
         var bookmark: ImageView = toolbar.findViewById(R.id.bookmark)
         var trash: ImageView = toolbar.findViewById(R.id.trash)
+        var myhospital: ImageView = toolbar.findViewById(R.id.myhospital)
+        myhospital.visibility = View.GONE
         search.visibility = View.GONE
         spinner.visibility = View.GONE
         bookmark.visibility = View.GONE
@@ -109,6 +111,8 @@ class CommunityFragment : Fragment() {
         var spinner: ImageView = toolbar.findViewById(R.id.spinner)
         var bookmark: ImageView = toolbar.findViewById(R.id.bookmark)
         var trash: ImageView = toolbar.findViewById(R.id.trash)
+        var myhospital: ImageView = toolbar.findViewById(R.id.myhospital)
+        myhospital.visibility = View.GONE
         search.visibility = View.GONE
         spinner.visibility = View.GONE
         bookmark.visibility = View.GONE
@@ -166,10 +170,12 @@ class CommunityFragment : Fragment() {
         var spinner: ImageView = toolbar.findViewById(R.id.spinner)
         var bookmark: ImageView = toolbar.findViewById(R.id.bookmark)
         var trash: ImageView = toolbar.findViewById(R.id.trash)
+        var myhospital: ImageView = toolbar.findViewById(R.id.myhospital)
         search.visibility = View.GONE
         spinner.visibility = View.GONE
         bookmark.visibility = View.GONE
         trash.visibility = View.GONE
+        myhospital.visibility = View.GONE
 
         var firebaseUser: FirebaseUser = FirebaseAuth.getInstance().currentUser!!
         mReference = FirebaseDatabase.getInstance().getReference("Posts")
