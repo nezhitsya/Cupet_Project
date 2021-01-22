@@ -25,6 +25,9 @@ class HomeFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     var hospitalList = arrayListOf<Hospital>()
 
+    private lateinit var top_recyclerView: RecyclerView
+    var myhospitalList = arrayListOf<String>()
+
     lateinit var firebaseDatabase: FirebaseDatabase
     lateinit var mReference: DatabaseReference
     lateinit var firebaseUser: FirebaseUser
@@ -52,6 +55,13 @@ class HomeFragment : Fragment() {
         linearLayoutManager.stackFromEnd = true
         recyclerView.layoutManager = linearLayoutManager
 
+        top_recyclerView = view.findViewById(R.id.top_recycler_view)
+        top_recyclerView.setHasFixedSize(true)
+        val top_linearLayoutManager = LinearLayoutManager(context)
+        top_linearLayoutManager.reverseLayout = true
+        top_linearLayoutManager.stackFromEnd = true
+        top_recyclerView.layoutManager = linearLayoutManager
+
         titleInfo()
 
         return view
@@ -70,6 +80,53 @@ class HomeFragment : Fragment() {
                 }
                 val adapter = HomeAdapter(context!!, hospitalList)
                 recyclerView?.adapter = adapter
+            }
+
+            override fun onCancelled(dataSnapshot: DatabaseError) {
+
+            }
+        })
+    }
+
+    private fun myhospital() {
+        myhospitalList = ArrayList()
+
+        var firebaseUser: FirebaseUser = FirebaseAuth.getInstance().currentUser!!
+        mReference = FirebaseDatabase.getInstance().getReference().child("myhospital").child(firebaseUser.uid)
+
+        mReference.addValueEventListener(object: ValueEventListener {
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for(snapshot: DataSnapshot in dataSnapshot.children) {
+                    snapshot.key?.let { myhospitalList.add(it) }
+                }
+                readMyhospital()
+            }
+
+            override fun onCancelled(dataSnapshot: DatabaseError) {
+
+            }
+        })
+    }
+
+    private fun readMyhospital() {
+        mReference = FirebaseDatabase.getInstance().getReference("Hospital")
+
+        mReference.addValueEventListener(object: ValueEventListener {
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                hospitalList.clear()
+                for(snapshot: DataSnapshot in dataSnapshot.children) {
+                    val hospital: Hospital? = snapshot.getValue(Hospital::class.java)
+
+                    for(id: String in myhospitalList) {
+                        if((hospital?.name).equals(id)) {
+                            hospitalList?.add(hospital!!)
+                        }
+                    }
+                    val adapter = HomeAdapter(context!!, hospitalList)
+                    top_recyclerView?.adapter = adapter
+                }
             }
 
             override fun onCancelled(dataSnapshot: DatabaseError) {
@@ -101,6 +158,7 @@ class HomeFragment : Fragment() {
                 user?.let {
                     stateInfo = user.state.toString()
                     hospitalInfo()
+                    myhospital()
                     var city_txt = user.city.toString()
                     var state_txt = user.state.toString()
                     toolbar_txt.text = city_txt + " " + state_txt
