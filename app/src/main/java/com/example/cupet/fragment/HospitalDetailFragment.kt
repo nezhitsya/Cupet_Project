@@ -104,10 +104,10 @@ class HospitalDetailFragment : Fragment() {
         mReference.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if(dataSnapshot.child(hospitalName).exists()) {
-                    imageView.setImageResource(R.drawable.ic_bookmarked)
+                    imageView.setImageResource(R.drawable.ic_favorite)
                     imageView.tag = "myhospital"
                 } else {
-                    imageView.setImageResource(R.drawable.ic_notbookmark)
+                    imageView.setImageResource(R.drawable.ic_notfavorite)
                     imageView.tag = "not_myhospital"
                 }
             }

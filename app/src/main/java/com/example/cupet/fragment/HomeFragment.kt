@@ -3,6 +3,7 @@ package com.example.cupet.fragment
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,6 +25,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     var hospitalList = arrayListOf<Hospital>()
+    var myfavoriteList = arrayListOf<Hospital>()
 
     private lateinit var top_recyclerView: RecyclerView
     var myhospitalList = arrayListOf<String>()
@@ -60,7 +62,7 @@ class HomeFragment : Fragment() {
         val top_linearLayoutManager = LinearLayoutManager(context)
         top_linearLayoutManager.reverseLayout = true
         top_linearLayoutManager.stackFromEnd = true
-        top_recyclerView.layoutManager = linearLayoutManager
+        top_recyclerView.layoutManager = top_linearLayoutManager
 
         titleInfo()
 
@@ -92,7 +94,7 @@ class HomeFragment : Fragment() {
         myhospitalList = ArrayList()
 
         var firebaseUser: FirebaseUser = FirebaseAuth.getInstance().currentUser!!
-        mReference = FirebaseDatabase.getInstance().getReference().child("myhospital").child(firebaseUser.uid)
+        mReference = FirebaseDatabase.getInstance().getReference().child("Myhospital").child(firebaseUser.uid)
 
         mReference.addValueEventListener(object: ValueEventListener {
 
@@ -115,16 +117,16 @@ class HomeFragment : Fragment() {
         mReference.addValueEventListener(object: ValueEventListener {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                hospitalList.clear()
+                myfavoriteList.clear()
                 for(snapshot: DataSnapshot in dataSnapshot.children) {
                     val hospital: Hospital? = snapshot.getValue(Hospital::class.java)
 
                     for(id: String in myhospitalList) {
                         if((hospital?.name).equals(id)) {
-                            hospitalList?.add(hospital!!)
+                            myfavoriteList?.add(hospital!!)
                         }
                     }
-                    val adapter = HomeAdapter(context!!, hospitalList)
+                    val adapter = HomeAdapter(context!!, myfavoriteList)
                     top_recyclerView?.adapter = adapter
                 }
             }
