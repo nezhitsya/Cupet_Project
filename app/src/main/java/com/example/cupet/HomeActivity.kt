@@ -1,6 +1,7 @@
 package com.example.cupet
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -40,6 +41,12 @@ class HomeActivity : AppCompatActivity() {
 
         drawer.setOnClickListener {
             home_drawer_layout.openDrawer((GravityCompat.END))
+        }
+
+        profile.setOnClickListener {
+            val editProfile = Intent(this, editProfileActivity::class.java)
+            startActivity(editProfile)
+            finish()
         }
 
         nav_join.setOnClickListener {

@@ -88,6 +88,10 @@ class CommunityDetailFragment : Fragment() {
             }
         }
 
+        trash.setOnClickListener {
+            FirebaseDatabase.getInstance().getReference("Posts").child(postid).removeValue()
+        }
+
         recyclerView = view.findViewById(R.id.recycler_view)
         recyclerView.setHasFixedSize(true)
         val linearLayoutManager = LinearLayoutManager(context)

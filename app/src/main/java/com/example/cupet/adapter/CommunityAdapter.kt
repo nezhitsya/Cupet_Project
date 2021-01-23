@@ -44,6 +44,7 @@ class CommunityAdapter(val context: Context, val postList: ArrayList<Post>): Rec
             var df: DateFormat = SimpleDateFormat("yy.MM.dd  hh:mm")
             time?.text = df.format(mPost.time)
             publisherInfo(profile, nickname, mPost.publisher)
+            mPost.postid?.let { getComment(it, comment) }
 
             itemView.setOnClickListener {
                 var editor: SharedPreferences.Editor = context.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit()
@@ -75,6 +76,21 @@ class CommunityAdapter(val context: Context, val postList: ArrayList<Post>): Rec
                         Glide.with(context).load(user.profile).into(profile)
                     }
                 }
+            }
+
+            override fun onCancelled(dataSnapshot: DatabaseError) {
+
+            }
+        })
+    }
+
+    private fun getComment(postid: String, comment: TextView?) {
+        var reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Comment").child(postid)
+
+        reference.addValueEventListener(object: ValueEventListener {
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                comment?.text = ""+dataSnapshot.childrenCount
             }
 
             override fun onCancelled(dataSnapshot: DatabaseError) {

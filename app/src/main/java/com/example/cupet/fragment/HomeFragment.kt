@@ -71,13 +71,14 @@ class HomeFragment : Fragment() {
 
     private fun hospitalInfo() {
         mReference = FirebaseDatabase.getInstance().getReference("Hospital")
-        var query: Query = FirebaseDatabase.getInstance().getReference("Hospital").orderByChild("state").equalTo(stateInfo)
+        var query: Query = mReference.orderByChild("state").equalTo(stateInfo)
 
         query.addListenerForSingleValueEvent(object: ValueEventListener {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (child in dataSnapshot.children) {
                     val hospital: Hospital? = child.getValue(Hospital::class.java)
+                    hospitalList.sortBy { it.likes }
                     hospitalList?.add(hospital!!)
                 }
                 val adapter = HomeAdapter(context!!, hospitalList)
