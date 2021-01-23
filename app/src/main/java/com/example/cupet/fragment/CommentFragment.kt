@@ -51,7 +51,6 @@ class CommentFragment : Fragment() {
         }
 
         var toolbar: Toolbar = activity!!.findViewById(R.id.toolbar)
-        var toolbar_txt: TextView = toolbar.findViewById(R.id.toolbar_title)
         var search: ImageView = toolbar.findViewById(R.id.search)
         var spinner: ImageView = toolbar.findViewById(R.id.spinner)
         var bookmark: ImageView = toolbar.findViewById(R.id.bookmark)
@@ -62,20 +61,6 @@ class CommentFragment : Fragment() {
         spinner.visibility = View.GONE
         bookmark.visibility = View.GONE
         trash.visibility = View.GONE
-
-        if(toolbar_txt.text == "게시판") {
-            toolbar_txt.text = "게시판"
-            bookmark.visibility = View.GONE
-            trash.visibility = View.GONE
-        } else if(toolbar_txt.text == "북마크") {
-            toolbar_txt.text = "북마크"
-            bookmark.visibility = View.VISIBLE
-            trash.visibility = View.GONE
-        } else if(toolbar_txt.text == "내가 쓴 글") {
-            toolbar_txt.text = "내가 쓴 글"
-            bookmark.visibility = View.GONE
-            trash.visibility = View.GONE
-        }
 
         recyclerView = view.findViewById(R.id.recycler_view)
         recyclerView.setHasFixedSize(true)

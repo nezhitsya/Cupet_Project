@@ -48,6 +48,10 @@ class CommunityAdapter(val context: Context, val postList: ArrayList<Post>): Rec
             mPost.postid?.let { getComment(it, comment) }
 
             comment?.setOnClickListener {
+                var editor: SharedPreferences.Editor = context.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit()
+                editor.putString("postid", mPost.postid)
+                editor.apply()
+
                 val fragment = (context as HomeActivity).supportFragmentManager.beginTransaction()
                 fragment.replace(R.id.fragment_container, CommentFragment()).addToBackStack(null).commit()
             }
