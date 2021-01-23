@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cupet.HomeActivity
 import com.example.cupet.R
+import com.example.cupet.fragment.CommentFragment
 import com.example.cupet.fragment.CommunityDetailFragment
 import com.example.cupet.model.Post
 import com.example.cupet.model.User
@@ -45,6 +46,11 @@ class CommunityAdapter(val context: Context, val postList: ArrayList<Post>): Rec
             time?.text = df.format(mPost.time)
             publisherInfo(profile, nickname, mPost.publisher)
             mPost.postid?.let { getComment(it, comment) }
+
+            comment?.setOnClickListener {
+                val fragment = (context as HomeActivity).supportFragmentManager.beginTransaction()
+                fragment.replace(R.id.fragment_container, CommentFragment()).addToBackStack(null).commit()
+            }
 
             itemView.setOnClickListener {
                 var editor: SharedPreferences.Editor = context.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit()

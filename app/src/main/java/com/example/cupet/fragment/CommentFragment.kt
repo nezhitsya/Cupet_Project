@@ -58,11 +58,24 @@ class CommentFragment : Fragment() {
         var trash: ImageView = toolbar.findViewById(R.id.trash)
         var myhospital: ImageView = toolbar.findViewById(R.id.myhospital)
         myhospital.visibility = View.GONE
-        toolbar_txt.text = "댓글"
         search.visibility = View.GONE
         spinner.visibility = View.GONE
         bookmark.visibility = View.GONE
         trash.visibility = View.GONE
+
+        if(toolbar_txt.text == "게시판") {
+            toolbar_txt.text = "게시판"
+            bookmark.visibility = View.GONE
+            trash.visibility = View.GONE
+        } else if(toolbar_txt.text == "북마크") {
+            toolbar_txt.text = "북마크"
+            bookmark.visibility = View.VISIBLE
+            trash.visibility = View.GONE
+        } else if(toolbar_txt.text == "내가 쓴 글") {
+            toolbar_txt.text = "내가 쓴 글"
+            bookmark.visibility = View.GONE
+            trash.visibility = View.GONE
+        }
 
         recyclerView = view.findViewById(R.id.recycler_view)
         recyclerView.setHasFixedSize(true)
