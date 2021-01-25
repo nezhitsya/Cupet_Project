@@ -5,103 +5,235 @@
     android:layout_height="match_parent"
     tools:context=".fragment.HospitalDetailFragment">
 
-    <RelativeLayout
-        android:id="@+id/info"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        
-        <ImageView
-            android:id="@+id/image"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_margin="30dp"
-            android:src="@drawable/ic_logo" />
 
-        <LinearLayout
-            android:id="@+id/address_container"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/image"
-            android:layout_marginTop="35dp">
-
-            <TextView
-                android:id="@+id/address_txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="주소"
-                android:textSize="15dp"
-                android:textColor="@color/colorBlack" />
-
-            <TextView
-                android:id="@+id/address"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="35dp"
-                android:layout_marginEnd="20dp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/intro_container"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/address_container"
-            android:layout_toRightOf="@+id/image"
-            android:layout_marginTop="15dp">
-
-            <TextView
-                android:id="@+id/intro_txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="소개 글"
-                android:textSize="15dp"
-                android:textColor="@color/colorBlack" />
-
-            <TextView
-                android:id="@+id/intro"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/image"
-            android:layout_below="@+id/intro_container"
-            android:layout_marginTop="15dp">
-
-            <TextView
-                android:id="@+id/likes_txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="평점"
-                android:textSize="15dp"
-                android:textColor="@color/colorBlack"
-                android:layout_marginTop="5dp"/>
+        <RelativeLayout
+            android:id="@+id/info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/likes1"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginLeft="35dp"
-                android:src="@drawable/ic_dislike" />
+                android:id="@+id/image"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="30dp"
+                android:src="@drawable/ic_logo" />
 
-            <ImageView
-                android:id="@+id/likes2"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/ic_dislike" />
+            <LinearLayout
+                android:id="@+id/address_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/image"
+                android:layout_marginTop="35dp">
 
-            <ImageView
-                android:id="@+id/likes3"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/ic_dislike" />
+                <TextView
+                    android:id="@+id/address_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="주소"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorBlack" />
 
-        </LinearLayout>
-        
-    </RelativeLayout>
+                <TextView
+                    android:id="@+id/address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginEnd="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/intro_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/address_container"
+                android:layout_toRightOf="@+id/image"
+                android:layout_marginTop="15dp">
+
+                <TextView
+                    android:id="@+id/intro_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="소개 글"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorBlack" />
+
+                <TextView
+                    android:id="@+id/intro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/likes_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/image"
+                android:layout_below="@+id/intro_container"
+                android:layout_marginTop="15dp">
+
+                <TextView
+                    android:id="@+id/likes_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="평점"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorBlack"
+                    android:layout_gravity="center" />
+
+                <ImageView
+                    android:id="@+id/likes1"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="35dp"
+                    android:src="@drawable/ic_dislike" />
+
+                <ImageView
+                    android:id="@+id/likes2"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_dislike" />
+
+                <ImageView
+                    android:id="@+id/likes3"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_dislike" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/contact_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_below="@+id/likes_container">
+
+                <LinearLayout
+                    android:id="@+id/call_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/call"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_call" />
+
+                    <TextView
+                        android:id="@+id/call_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="전화 상담"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:layout_marginLeft="10dp"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/text_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60dp"
+                    android:layout_toRightOf="@+id/call_container">
+
+                    <ImageView
+                        android:id="@+id/text"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_text" />
+
+                    <TextView
+                        android:id="@+id/text_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="채팅 상담"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:layout_marginLeft="10dp"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/estimate_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/contact_container"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view_estimate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2px"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@color/colorGrey" />
+
+                <TextView
+                    android:id="@+id/more_estimate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="더보기"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/cost_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/estimate_container"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view_cost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2px"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@color/colorGrey" />
+
+                <TextView
+                    android:id="@+id/more_cost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="더보기"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </FrameLayout>
