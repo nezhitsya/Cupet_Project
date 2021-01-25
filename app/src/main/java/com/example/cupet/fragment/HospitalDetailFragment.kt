@@ -50,6 +50,14 @@ class HospitalDetailFragment : Fragment() {
         bookmark.visibility = View.GONE
         toolbar_txt.text = hospitalName
 
+        more_estimate.setOnClickListener {
+            activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, EstimateFragment()).addToBackStack(null).commit()
+        }
+
+        more_cost.setOnClickListener {
+            activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, CostFragment()).addToBackStack(null).commit()
+        }
+
         myhospital.setOnClickListener {
             if(myhospital.tag == "not_myhospital") {
                 FirebaseDatabase.getInstance().reference.child("Myhospital").child(firebaseUser.uid).child(hospitalName).setValue(true)
