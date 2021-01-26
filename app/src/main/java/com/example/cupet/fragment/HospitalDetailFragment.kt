@@ -1,6 +1,5 @@
 package com.example.cupet.fragment
 
-import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -11,9 +10,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 import com.example.cupet.R
+import com.example.cupet.adapter.EstimateAdapter
+import com.example.cupet.model.Estimate
 import com.example.cupet.model.Hospital
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -21,6 +24,9 @@ import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_hospital_detail.*
 
 class HospitalDetailFragment : Fragment() {
+
+    private lateinit var recyclerView: RecyclerView
+    var estimateList = arrayListOf<Estimate>()
 
     lateinit var mReference: DatabaseReference
     lateinit var hospitalName: String
@@ -66,8 +72,16 @@ class HospitalDetailFragment : Fragment() {
             }
         }
 
+        recyclerView = view.findViewById(R.id.recycler_view_estimate)
+        recyclerView.setHasFixedSize(true)
+        val linearLayoutManager = LinearLayoutManager(context)
+        linearLayoutManager.reverseLayout = true
+        linearLayoutManager.stackFromEnd = true
+        recyclerView.layoutManager = linearLayoutManager
+
         hospitalInfo()
         myHospital(hospitalName, myhospital)
+        getEstimate()
 
         return view
     }
@@ -118,6 +132,35 @@ class HospitalDetailFragment : Fragment() {
                     imageView.setImageResource(R.drawable.ic_notfavorite)
                     imageView.tag = "not_myhospital"
                 }
+            }
+
+            override fun onCancelled(dataSnapshot: DatabaseError) {
+
+            }
+        })
+    }
+
+    private fun getEstimate() {
+        mReference = FirebaseDatabase.getInstance().getReference("Estimate").child(hospitalName)
+
+        mReference.addValueEventListener(object: ValueEventListener {
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                estimateList.clear()
+
+                for(snapshot: DataSnapshot in dataSnapshot.children) {
+                    val estimate: Estimate? = snapshot.getValue(Estimate::class.java)
+                    estimate?.let {
+                        estimateList.add(estimate)
+                    }
+                }
+                for(i in 0..2) {
+                    estimateList?.get(i)
+                    val adapter = EstimateAdapter(context!!, estimateList)
+                    recyclerView.adapter = adapter
+                }
+//                val adapter = EstimateAdapter(context!!, estimateList)
+//                recyclerView.adapter = adapter
             }
 
             override fun onCancelled(dataSnapshot: DatabaseError) {

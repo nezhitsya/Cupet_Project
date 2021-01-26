@@ -26,7 +26,7 @@ class EstimateFragment : Fragment() {
     var estimateList = arrayListOf<Estimate>()
 
     lateinit var mReference: DatabaseReference
-    lateinit var postid: String
+    lateinit var hospitalName: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +35,7 @@ class EstimateFragment : Fragment() {
         var view: View = inflater.inflate(R.layout.fragment_estimate, container, false)
 
         val preferences: SharedPreferences = context!!.getSharedPreferences("PREFS", Context.MODE_PRIVATE)
-        postid = preferences.getString("postid", "none").toString()
+        hospitalName = preferences.getString("name", "none").toString()
 
         var estimate: EditText = view.findViewById(R.id.estimate)
         var send: TextView = view.findViewById(R.id.send)
@@ -62,7 +62,7 @@ class EstimateFragment : Fragment() {
 
     private fun postEstimate() {
         var estimate = estimate.text.toString()
-        var reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Estimate").child(postid)
+        var reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Estimate").child(hospitalName)
         val estimateid: String = reference.push().key.toString()
 
         val hashMap: HashMap<String, Any> = HashMap()
@@ -75,7 +75,7 @@ class EstimateFragment : Fragment() {
     }
 
     private fun getEstimate() {
-        mReference = FirebaseDatabase.getInstance().getReference("Estimate").child(postid)
+        mReference = FirebaseDatabase.getInstance().getReference("Estimate").child(hospitalName)
 
         mReference.addValueEventListener(object: ValueEventListener {
 
