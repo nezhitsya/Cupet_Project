@@ -5,6 +5,92 @@
     android:layout_height="match_parent"
     tools:context=".fragment.EstimateFragment">
 
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="후기"
+                android:layout_margin="10dp"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:textColor="@color/colorBlack" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="99dp"
+        android:layout_gravity="bottom">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/estimate"
+            android:layout_margin="10dp">
+
+            <ImageView
+                android:id="@+id/likes1"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_dislike" />
+
+            <ImageView
+                android:id="@+id/likes2"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_dislike" />
+
+            <ImageView
+                android:id="@+id/likes3"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_dislike" />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/estimate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_toLeftOf="@+id/send"
+            android:background="@android:color/transparent"
+            android:hint="후기"
+            android:padding="15dp" />
+
+        <TextView
+            android:id="@+id/send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="19dp"
+            android:text="SEND"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
 
 </FrameLayout>
