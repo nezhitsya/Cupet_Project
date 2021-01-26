@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,6 +28,7 @@ class EstimateFragment : Fragment() {
 
     lateinit var mReference: DatabaseReference
     lateinit var hospitalName: String
+    var likes: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,12 +39,31 @@ class EstimateFragment : Fragment() {
         val preferences: SharedPreferences = context!!.getSharedPreferences("PREFS", Context.MODE_PRIVATE)
         hospitalName = preferences.getString("name", "none").toString()
 
-        var estimate: EditText = view.findViewById(R.id.estimate)
+        var estimate_txt: EditText = view.findViewById(R.id.estimate_txt)
         var send: TextView = view.findViewById(R.id.send)
+        var likes1: ImageView = view.findViewById(R.id.likes1)
+        var likes2: ImageView = view.findViewById(R.id.likes2)
+        var likes3: ImageView = view.findViewById(R.id.likes3)
+
+        likes1.setOnClickListener {
+            likes1?.setImageResource(R.drawable.ic_like)
+            likes = 1
+        }
+        likes2.setOnClickListener {
+            likes1?.setImageResource(R.drawable.ic_like)
+            likes2?.setImageResource(R.drawable.ic_like)
+            likes = 2
+        }
+        likes3.setOnClickListener {
+            likes1?.setImageResource(R.drawable.ic_like)
+            likes2?.setImageResource(R.drawable.ic_like)
+            likes3?.setImageResource(R.drawable.ic_like)
+            likes = 3
+        }
 
         send.setOnClickListener {
-            if(estimate.text.toString().equals("")) {
-                Toast.makeText(context, "댓글을 입력해주세요.", Toast.LENGTH_SHORT).show()
+            if(estimate_txt.text.toString().equals("")) {
+                Toast.makeText(context, "후기를 작성해주세요.", Toast.LENGTH_SHORT).show()
             } else {
                 postEstimate()
             }
@@ -61,7 +82,7 @@ class EstimateFragment : Fragment() {
     }
 
     private fun postEstimate() {
-        var estimate = estimate.text.toString()
+        var estimate = estimate_txt.text.toString()
         var reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Estimate").child(hospitalName)
         val estimateid: String = reference.push().key.toString()
 
@@ -70,6 +91,7 @@ class EstimateFragment : Fragment() {
         hashMap["estimateid"] = estimateid
         hashMap["publisher"] = FirebaseAuth.getInstance().currentUser!!.uid
         hashMap["time"] = System.currentTimeMillis()
+        hashMap["likes"] = likes
 
         reference.child(estimateid).setValue(hashMap)
     }

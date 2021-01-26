@@ -56,6 +56,9 @@ class HospitalDetailFragment : Fragment() {
         bookmark.visibility = View.GONE
         toolbar_txt.text = hospitalName
 
+        var more_estimate: TextView = view.findViewById(R.id.more_estimate)
+        var more_cost: TextView = view.findViewById(R.id.more_cost)
+
         more_estimate.setOnClickListener {
             activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, EstimateFragment()).addToBackStack(null).commit()
         }
@@ -154,13 +157,13 @@ class HospitalDetailFragment : Fragment() {
                         estimateList.add(estimate)
                     }
                 }
-                for(i in 0..2) {
-                    estimateList?.get(i)
-                    val adapter = EstimateAdapter(context!!, estimateList)
-                    recyclerView.adapter = adapter
-                }
-//                val adapter = EstimateAdapter(context!!, estimateList)
-//                recyclerView.adapter = adapter
+//                for(i in 0..2) {
+//                    estimateList?.get(i)
+//                    val adapter = EstimateAdapter(context!!, estimateList)
+//                    recyclerView.adapter = adapter
+//                }
+                val adapter = EstimateAdapter(context!!, estimateList)
+                recyclerView.adapter = adapter
             }
 
             override fun onCancelled(dataSnapshot: DatabaseError) {

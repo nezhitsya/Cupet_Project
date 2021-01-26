@@ -38,7 +38,7 @@
         android:layout_marginBottom="10dp" />
 
     <ImageView
-        android:id="@+id/likes1"
+        android:id="@+id/likes3"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_alignParentRight="true"
@@ -51,11 +51,11 @@
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_marginTop="20dp"
-        android:layout_toLeftOf="@+id/likes1"
+        android:layout_toLeftOf="@+id/likes3"
         android:src="@drawable/ic_dislike" />
 
     <ImageView
-        android:id="@+id/likes3"
+        android:id="@+id/likes1"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_marginTop="20dp"
