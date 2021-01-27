@@ -14,7 +14,7 @@
         <item>충청북도</item>
         <item>충청남도</item>
         <item>전라북도</item>
-        <item>전라남도</item>도
+        <item>전라남도</item>
         <item>경상북도</item>
         <item>경상남도</item>
         <item>제주특별자치</item>
@@ -50,5 +50,67 @@
         <item>강남구</item>
         <item>동작구</item>
         <item>강동구</item>
+    </string-array>
+
+    <string-array name="species">
+        <item>강아지</item>
+        <item>고양이</item>
+        <item>햄스터</item>
+        <item>토끼</item>
+        <item>기니피그</item>
+        <item>패럿</item>
+        <item>고슴도치</item>
+        <item>거북</item>
+        <item>조류</item>
+        <item>파충류</item>
+        <item>양서류</item>
+        <item>어류</item>
+        <item>갑각류</item>
+        <item>협각류</item>
+        <item>다지류</item>
+        <item>육각류</item>
+    </string-array>
+
+    <string-array name="weight">
+        <item>1kg 미만</item>
+        <item>1kg ~ 2kg</item>
+        <item>2kg ~ 3kg</item>
+        <item>3kg ~ 4kg</item>
+        <item>5kg ~ 6kg</item>
+        <item>6kg ~ 7kg</item>
+        <item>7kg ~ 8kg</item>
+        <item>8kg ~ 9kg</item>
+        <item>9kg ~ 10kg</item>
+        <item>10kg ~ 11kg</item>
+        <item>11kg ~ 12kg</item>
+        <item>12kg ~ 13kg</item>
+        <item>13kg ~ 14kg</item>
+        <item>14kg ~ 15kg</item>
+        <item>15kg ~ 16kg</item>
+        <item>16kg ~ 17kg</item>
+        <item>17kg ~ 18kg</item>
+        <item>18kg ~ 19kg</item>
+        <item>19kg ~ 20kg</item>
+        <item>20kg ~ 21kg</item>
+        <item>21kg ~ 22kg</item>
+        <item>22kg ~ 23kg</item>
+        <item>23kg ~ 24kg</item>
+        <item>24kg ~ 25kg</item>
+        <item>25kg ~ 26kg</item>
+        <item>26kg ~ 27kg</item>
+        <item>27kg ~ 28kg</item>
+        <item>28kg ~ 29kg</item>
+        <item>29kg ~ 30kg</item>
+        <item>30kg ~ 31kg</item>
+        <item>31kg ~ 32kg</item>
+        <item>32kg ~ 33kg</item>
+        <item>33kg ~ 34kg</item>
+        <item>34kg ~ 35kg</item>
+        <item>35kg ~ 36kg</item>
+        <item>36kg ~ 37kg</item>
+        <item>37kg ~ 38kg</item>
+        <item>38kg ~ 39kg</item>
+        <item>39kg ~ 40kg</item>
+        <item>40kg 이상</item>
     </string-array>
 </resources>

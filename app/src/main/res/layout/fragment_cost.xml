@@ -37,7 +37,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="99dp"
+        android:layout_height="120dp"
         android:layout_gravity="bottom">
 
         <LinearLayout
@@ -47,8 +47,24 @@
             android:layout_margin="10dp">
 
             <Spinner
-                android:layout_width=""
-                android:layout_height=""
+                android:id="@+id/species"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:padding="23dp" />
+
+            <Spinner
+                android:id="@+id/weight"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:padding="23dp" />
+
+            <EditText
+                android:id="@+id/diagnosis"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:hint="진료 내용" />
 
         </LinearLayout>
 
@@ -61,7 +77,7 @@
             android:layout_marginEnd="10dp"
             android:layout_toLeftOf="@+id/send"
             android:background="@android:color/transparent"
-            android:hint="후기"
+            android:hint="비용"
             android:padding="15dp" />
 
         <TextView
