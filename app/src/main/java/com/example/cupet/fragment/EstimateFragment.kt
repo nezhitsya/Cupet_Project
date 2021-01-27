@@ -20,11 +20,16 @@ import com.example.cupet.model.Estimate
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_estimate.*
+import java.lang.Integer.parseInt
 
 class EstimateFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     var estimateList = arrayListOf<Estimate>()
+    var scoreList = arrayListOf<String>()
+    var num: Int = 0
+    var result: Int = 0
+    var average: Int = 0
 
     lateinit var mReference: DatabaseReference
     lateinit var hospitalName: String
@@ -77,6 +82,7 @@ class EstimateFragment : Fragment() {
         recyclerView.layoutManager = linearLayoutManager
 
         getEstimate()
+        getScore()
 
         return view
     }
@@ -112,6 +118,40 @@ class EstimateFragment : Fragment() {
                 }
                 val adapter = EstimateAdapter(context!!, estimateList)
                 recyclerView.adapter = adapter
+            }
+
+            override fun onCancelled(dataSnapshot: DatabaseError) {
+
+            }
+        })
+    }
+
+    private fun getScore() {
+        mReference = FirebaseDatabase.getInstance().getReference("Estimate").child(hospitalName)
+
+        mReference.addValueEventListener(object: ValueEventListener {
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                scoreList.clear()
+
+                for(snapshot: DataSnapshot in dataSnapshot.children) {
+                    val estimate: Estimate? = snapshot.getValue(Estimate::class.java)
+                    estimate?.let {
+                        scoreList.add(estimate.likes.toString())
+                        num = scoreList.size
+                        scoreList?.let {
+                            for(i in it) {
+                                result += parseInt(i)
+                            }
+                        }
+                    }
+                }
+                average = result / num
+                var reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Hospital").child(hospitalName)
+                val hashMap: HashMap<String, Any> = HashMap()
+                hashMap["likes"] = average
+
+                reference.child(hospitalName).setValue(hashMap)
             }
 
             override fun onCancelled(dataSnapshot: DatabaseError) {
