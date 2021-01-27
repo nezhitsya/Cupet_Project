@@ -3,6 +3,7 @@ package com.example.cupet.fragment
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -117,6 +118,7 @@ class EstimateFragment : Fragment() {
                     }
                 }
                 val adapter = EstimateAdapter(context!!, estimateList)
+                adapter.notifyDataSetChanged()
                 recyclerView.adapter = adapter
             }
 
@@ -150,6 +152,7 @@ class EstimateFragment : Fragment() {
                 var reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Hospital").child(hospitalName)
                 val hashMap: HashMap<String, Any> = HashMap()
                 hashMap["likes"] = average
+                Log.d("ldy", average.toString())
 
                 reference.child(hospitalName).setValue(hashMap)
             }

@@ -159,13 +159,12 @@ class HospitalDetailFragment : Fragment() {
                     }
                 }
                 estimateList?.let {
-                    for(j in 0..2) {
-                        for(i in it) {
-                            twoList.add(i)
-                        }
+                    for(i in it) {
+                        twoList.add(i)
                     }
                 }
                 val adapter = EstimateAdapter(context!!, twoList)
+                adapter.notifyDataSetChanged()
                 recyclerView.adapter = adapter
             }
 
