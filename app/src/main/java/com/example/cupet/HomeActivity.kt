@@ -57,6 +57,7 @@ class HomeActivity : AppCompatActivity() {
             bookmark.visibility = View.GONE
             trash.visibility = View.GONE
             myhospital.visibility = View.GONE
+            supportFragmentManager.beginTransaction().replace(R.id.fragment_container, HomeFragment()).addToBackStack(null).commit()
         }
 
         nav_cal.setOnClickListener {
