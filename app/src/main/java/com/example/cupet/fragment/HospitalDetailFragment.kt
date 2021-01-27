@@ -27,6 +27,7 @@ class HospitalDetailFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     var estimateList = arrayListOf<Estimate>()
+    var twoList = arrayListOf<Estimate>()
 
     lateinit var mReference: DatabaseReference
     lateinit var hospitalName: String
@@ -157,12 +158,10 @@ class HospitalDetailFragment : Fragment() {
                         estimateList.add(estimate)
                     }
                 }
-//                for(i in 0..2) {
-//                    estimateList?.get(i)
-//                    val adapter = EstimateAdapter(context!!, estimateList)
-//                    recyclerView.adapter = adapter
-//                }
-                val adapter = EstimateAdapter(context!!, estimateList)
+                for(i in 0..2) {
+                    twoList.add(estimateList?.get(i))
+                }
+                val adapter = EstimateAdapter(context!!, twoList)
                 recyclerView.adapter = adapter
             }
 
