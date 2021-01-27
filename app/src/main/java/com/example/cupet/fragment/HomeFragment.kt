@@ -82,6 +82,7 @@ class HomeFragment : Fragment() {
                     hospitalList?.add(hospital!!)
                 }
                 val adapter = HomeAdapter(context!!, hospitalList)
+                adapter.notifyDataSetChanged()
                 recyclerView?.adapter = adapter
             }
 
@@ -128,6 +129,7 @@ class HomeFragment : Fragment() {
                         }
                     }
                     val adapter = HomeAdapter(context!!, myfavoriteList)
+                    adapter.notifyDataSetChanged()
                     top_recyclerView?.adapter = adapter
                 }
             }

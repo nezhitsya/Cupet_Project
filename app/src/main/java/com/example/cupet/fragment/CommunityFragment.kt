@@ -96,6 +96,7 @@ class CommunityFragment : Fragment() {
                     }
                 }
                 val adapter = CommunityAdapter(context!!, postList)
+                adapter.notifyDataSetChanged()
                 recyclerView?.adapter = adapter
             }
 
@@ -154,6 +155,7 @@ class CommunityFragment : Fragment() {
                         }
                     }
                     val adapter = CommunityAdapter(context!!, postList)
+                    adapter.notifyDataSetChanged()
                     recyclerView?.adapter = adapter
                 }
             }
@@ -193,6 +195,7 @@ class CommunityFragment : Fragment() {
                     }
                 }
                 val adapter = CommunityAdapter(context!!, postList)
+                adapter.notifyDataSetChanged()
                 recyclerView?.adapter = adapter
             }
 
