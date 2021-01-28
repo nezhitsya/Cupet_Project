@@ -140,21 +140,20 @@ class EstimateFragment : Fragment() {
                     val estimate: Estimate? = snapshot.getValue(Estimate::class.java)
                     estimate?.let {
                         scoreList.add(estimate.likes.toString())
-                        num = scoreList.size
-                        scoreList?.let {
-                            for(i in it) {
-                                result += parseInt(i)
-                            }
-                        }
                     }
                 }
-                average = result / num
+                num = scoreList.size
+                scoreList?.let {
+                    for(i in it) {
+                        result += parseInt(i)
+                        average = result / num
+                    }
+                }
                 var reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Hospital").child(hospitalName)
                 val hashMap: HashMap<String, Any> = HashMap()
                 hashMap["likes"] = average
-                Log.d("ldy", average.toString())
 
-                reference.child(hospitalName).setValue(hashMap)
+                reference.updateChildren(hashMap)
             }
 
             override fun onCancelled(dataSnapshot: DatabaseError) {

@@ -156,14 +156,14 @@ class HospitalDetailFragment : Fragment() {
                     val estimate: Estimate? = snapshot.getValue(Estimate::class.java)
                     estimate?.let {
                         estimateList.add(estimate)
+//                        estimateList?.let {
+//                            for(i in it) {
+//                                twoList.add(i)
+//                            }
+//                        }
                     }
                 }
-                estimateList?.let {
-                    for(i in it) {
-                        twoList.add(i)
-                    }
-                }
-                val adapter = EstimateAdapter(context!!, twoList)
+                val adapter = EstimateAdapter(context!!, estimateList)
                 adapter.notifyDataSetChanged()
                 recyclerView.adapter = adapter
             }
