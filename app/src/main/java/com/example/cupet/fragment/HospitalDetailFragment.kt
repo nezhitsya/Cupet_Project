@@ -15,7 +15,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 import com.example.cupet.R
+import com.example.cupet.adapter.CostAdapter
 import com.example.cupet.adapter.EstimateAdapter
+import com.example.cupet.model.Cost
 import com.example.cupet.model.Estimate
 import com.example.cupet.model.Hospital
 import com.google.firebase.auth.FirebaseAuth
@@ -27,7 +29,8 @@ class HospitalDetailFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     var estimateList = arrayListOf<Estimate>()
-    var twoList = arrayListOf<Estimate>()
+    private lateinit var recyclerView_cost: RecyclerView
+    var costList = arrayListOf<Cost>()
 
     lateinit var mReference: DatabaseReference
     lateinit var hospitalName: String
@@ -83,9 +86,17 @@ class HospitalDetailFragment : Fragment() {
         linearLayoutManager.stackFromEnd = true
         recyclerView.layoutManager = linearLayoutManager
 
+        recyclerView_cost = view.findViewById(R.id.recycler_view_cost)
+        recyclerView_cost.setHasFixedSize(true)
+        val linearLayoutManager1 = LinearLayoutManager(context)
+        linearLayoutManager1.reverseLayout = true
+        linearLayoutManager1.stackFromEnd = true
+        recyclerView_cost.layoutManager = linearLayoutManager1
+
         hospitalInfo()
         myHospital(hospitalName, myhospital)
         getEstimate()
+        getCost()
 
         return view
     }
@@ -156,16 +167,36 @@ class HospitalDetailFragment : Fragment() {
                     val estimate: Estimate? = snapshot.getValue(Estimate::class.java)
                     estimate?.let {
                         estimateList.add(estimate)
-//                        estimateList?.let {
-//                            for(i in it) {
-//                                twoList.add(i)
-//                            }
-//                        }
                     }
                 }
                 val adapter = EstimateAdapter(context!!, estimateList)
                 adapter.notifyDataSetChanged()
                 recyclerView.adapter = adapter
+            }
+
+            override fun onCancelled(dataSnapshot: DatabaseError) {
+
+            }
+        })
+    }
+
+    private fun getCost() {
+        mReference = FirebaseDatabase.getInstance().getReference("Cost").child(hospitalName)
+
+        mReference.addValueEventListener(object: ValueEventListener {
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                costList.clear()
+
+                for(snapshot: DataSnapshot in dataSnapshot.children) {
+                    val cost: Cost? = snapshot.getValue(Cost::class.java)
+                    cost?.let {
+                        costList.add(cost)
+                    }
+                }
+                val adapter = CostAdapter(context!!, costList)
+                adapter.notifyDataSetChanged()
+                recyclerView_cost.adapter = adapter
             }
 
             override fun onCancelled(dataSnapshot: DatabaseError) {

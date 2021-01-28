@@ -108,7 +108,6 @@ class CostFragment : Fragment() {
                     }
                 }
                 val adapter = CostAdapter(context!!, costList)
-                adapter.notifyDataSetChanged()
                 recyclerView.adapter = adapter
             }
 
