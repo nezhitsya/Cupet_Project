@@ -31,7 +31,7 @@ class CostAdapter(val context: Context, val costList: ArrayList<Cost>): Recycler
 
         fun bind(mCost: Cost, context: Context) {
             diagnosis?.text = mCost.diagnosis
-            weight?.text = mCost.weight + " kg"
+            weight?.text = mCost.weight
             species?.text = mCost.species
             cost?.text = mCost.cost.toString() + " 원"
             var df: DateFormat = SimpleDateFormat("yy.MM.dd")

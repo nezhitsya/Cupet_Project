@@ -16,6 +16,7 @@ import com.example.cupet.adapter.CostAdapter
 import com.example.cupet.model.Cost
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_cost.*
+import java.lang.Integer.parseInt
 
 class CostFragment : Fragment() {
 
@@ -82,8 +83,10 @@ class CostFragment : Fragment() {
         var reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Cost").child(hospitalName)
         val costid: String = reference.push().key.toString()
 
+        val cost_int: Int = parseInt(cost_txt.text.toString())
+
         val hashMap: HashMap<String, Any> = HashMap()
-        hashMap["cost"] = cost_txt.text
+        hashMap["cost"] = cost_int
         hashMap["costid"] = costid
         hashMap["weight"] = weight.selectedItem.toString()
         hashMap["time"] = System.currentTimeMillis()
