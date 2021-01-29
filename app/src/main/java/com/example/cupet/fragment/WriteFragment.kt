@@ -7,8 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 import com.example.cupet.R
+import com.example.cupet.model.Post
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
@@ -23,6 +27,9 @@ class WriteFragment : Fragment() {
     lateinit var firebaseUser: FirebaseUser
     lateinit var storageRef: StorageReference
 
+    private lateinit var recyclerView: RecyclerView
+    var postList = arrayListOf<Post>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,6 +38,12 @@ class WriteFragment : Fragment() {
 
         var write: ImageView = view.findViewById(R.id.finish)
         var write_txt: TextView = view.findViewById(R.id.finish_txt)
+        var add_photo: FloatingActionButton = view.findViewById(R.id.addPhoto)
+
+        recyclerView = view.findViewById(R.id.recycler_view)
+        recyclerView.setHasFixedSize(true)
+        val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.layoutManager = linearLayoutManager
 
         write.setOnClickListener {
             post()
@@ -38,6 +51,10 @@ class WriteFragment : Fragment() {
 
         write_txt.setOnClickListener {
             post()
+        }
+
+        add_photo.setOnClickListener {
+
         }
 
         firebaseUser = FirebaseAuth.getInstance().currentUser!!

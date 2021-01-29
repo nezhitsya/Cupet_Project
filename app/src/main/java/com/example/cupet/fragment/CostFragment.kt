@@ -3,6 +3,7 @@ package com.example.cupet.fragment
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -25,6 +26,9 @@ class CostFragment : Fragment() {
 
     lateinit var mReference: DatabaseReference
     lateinit var hospitalName: String
+    lateinit var weight_txt: String
+    lateinit var species_txt: String
+    lateinit var disgnosis_txt: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -67,6 +71,10 @@ class CostFragment : Fragment() {
             }
         }
 
+        weight_txt = weight.selectedItem.toString()
+        species_txt = species.selectedItem.toString()
+        disgnosis_txt = diagnosis.text.toString()
+
         recyclerView = view.findViewById(R.id.recycler_view)
         recyclerView.setHasFixedSize(true)
         val linearLayoutManager = LinearLayoutManager(context)
@@ -88,10 +96,10 @@ class CostFragment : Fragment() {
         val hashMap: HashMap<String, Any> = HashMap()
         hashMap["cost"] = cost_int
         hashMap["costid"] = costid
-        hashMap["weight"] = weight.selectedItem.toString()
+        hashMap["weight"] = weight_txt
         hashMap["time"] = System.currentTimeMillis()
-        hashMap["species"] = species.selectedItem.toString()
-        hashMap["diagnosis"] = diagnosis.text.toString()
+        hashMap["species"] = species_txt
+        hashMap["diagnosis"] = disgnosis_txt
 
         reference.child(costid).setValue(hashMap)
     }
