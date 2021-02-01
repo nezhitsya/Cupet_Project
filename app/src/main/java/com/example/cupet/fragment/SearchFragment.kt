@@ -31,7 +31,9 @@ class SearchFragment : Fragment() {
 
         recyclerView = view.findViewById(R.id.recycler_view)
         recyclerView.setHasFixedSize(true)
-        val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        val linearLayoutManager = LinearLayoutManager(context)
+        linearLayoutManager.reverseLayout = true
+        linearLayoutManager.stackFromEnd = true
         recyclerView.layoutManager = linearLayoutManager
 
         search.addTextChangedListener(object: TextWatcher {
@@ -59,7 +61,7 @@ class SearchFragment : Fragment() {
                 hospitalList.clear()
                 for(snapshot: DataSnapshot in dataSnapshot.children) {
                     val hospital: Hospital? = snapshot.getValue(Hospital::class.java)
-                    if (hospital != null) {
+                    hospital?.let {
                         hospitalList.add(hospital)
                     }
                 }
