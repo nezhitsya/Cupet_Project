@@ -101,6 +101,7 @@ class EstimateFragment : Fragment() {
         hashMap["likes"] = likes
 
         reference.child(estimateid).setValue(hashMap)
+        estimate_txt.setText("")
     }
 
     private fun getEstimate() {

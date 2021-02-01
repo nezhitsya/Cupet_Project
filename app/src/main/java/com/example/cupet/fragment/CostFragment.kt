@@ -102,6 +102,7 @@ class CostFragment : Fragment() {
         hashMap["diagnosis"] = disgnosis_txt
 
         reference.child(costid).setValue(hashMap)
+        cost_txt.setText("")
     }
 
     private fun getCost() {
