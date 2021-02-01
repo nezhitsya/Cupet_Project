@@ -12,10 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 import com.example.cupet.R
-import com.example.cupet.adapter.SearchAdapter
+import com.example.cupet.adapter.HomeAdapter
 import com.example.cupet.model.Hospital
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.fragment_search.*
 
 class SearchFragment : Fragment() {
 
@@ -60,9 +59,11 @@ class SearchFragment : Fragment() {
                 hospitalList.clear()
                 for(snapshot: DataSnapshot in dataSnapshot.children) {
                     val hospital: Hospital? = snapshot.getValue(Hospital::class.java)
-                    hospitalList.add(hospital)
+                    if (hospital != null) {
+                        hospitalList.add(hospital)
+                    }
                 }
-                val adapter = SearchAdapter(context!!, hospitalList)
+                val adapter = HomeAdapter(context!!, hospitalList)
                 adapter.notifyDataSetChanged()
                 recyclerView?.adapter = adapter
             }
