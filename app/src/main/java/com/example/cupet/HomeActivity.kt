@@ -50,6 +50,17 @@ class HomeActivity : AppCompatActivity() {
             finish()
         }
 
+        logout.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            val login = Intent(this, LoginActivity::class.java)
+            startActivity(login)
+            finish()
+        }
+
+        withdraw.setOnClickListener {
+
+        }
+
         nav_join.setOnClickListener {
             home_drawer_layout.closeDrawer((GravityCompat.END))
             toolbar_title.text = "즐겨찾는 병원"
