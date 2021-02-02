@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.view.GravityCompat
 import com.bumptech.glide.Glide
 import com.example.cupet.fragment.CommunityFragment
@@ -58,7 +59,17 @@ class HomeActivity : AppCompatActivity() {
         }
 
         withdraw.setOnClickListener {
-
+            FirebaseAuth.getInstance().currentUser!!.delete().addOnCompleteListener { task ->
+                if(task.isSuccessful) {
+                    Toast.makeText(this, "탈퇴가 완료되었습니다.", Toast.LENGTH_SHORT).show()
+                    FirebaseAuth.getInstance().signOut()
+                    val login = Intent(this, LoginActivity::class.java)
+                    startActivity(login)
+                    finish()
+                } else {
+                    Toast.makeText(this, "다시 시도해주세요..", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
 
         nav_join.setOnClickListener {
