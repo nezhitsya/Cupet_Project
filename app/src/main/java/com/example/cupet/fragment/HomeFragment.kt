@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
@@ -20,6 +21,7 @@ import com.example.cupet.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_register.*
 
 class HomeFragment : Fragment() {
 
@@ -63,6 +65,20 @@ class HomeFragment : Fragment() {
         top_linearLayoutManager.reverseLayout = true
         top_linearLayoutManager.stackFromEnd = true
         top_recyclerView.layoutManager = top_linearLayoutManager
+
+        var toolbar: Toolbar = activity!!.findViewById(R.id.toolbar)
+        var spinner: ImageView = toolbar.findViewById(R.id.spinner)
+
+        spinner.setOnClickListener {
+            ArrayAdapter.createFromResource(
+                context!!,
+                R.array.state,
+                android.R.layout.simple_spinner_item
+            ).also {adapter ->
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                state.adapter = adapter
+            }
+        }
 
         titleInfo()
 

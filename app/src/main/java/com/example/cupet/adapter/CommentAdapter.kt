@@ -1,18 +1,13 @@
 package com.example.cupet.adapter
 
 import android.content.Context
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
+import android.view.*
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.cupet.R
 import com.example.cupet.model.Comment
 import com.example.cupet.model.User
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import java.text.DateFormat
 import java.text.SimpleDateFormat
@@ -35,14 +30,33 @@ class CommentAdapter(val context: Context, val commentList: ArrayList<Comment>):
         var time = itemView?.findViewById<TextView>(R.id.time)
         var option = itemView?.findViewById<Button>(R.id.option)
 
-        fun bind(mComment: Comment, context: Context) {
+        fun bind(mComment: Comment, context: Context): Boolean {
             comment?.text = mComment.comment
             var df: DateFormat = SimpleDateFormat("yy.MM.dd  hh:mm")
             time?.text = df.format(mComment.time)
             publisherInfo(profile, nickname, mComment.publisher)
 
+            if(!mComment.publisher?.equals(FirebaseAuth.getInstance().currentUser!!)!!) {
+                option!!.visibility = View.GONE
+            }
+
             option?.setOnClickListener{
-                Log.d("ldy", "Option clicked!")
+                val popupMenu = PopupMenu(context, option, Gravity.END)
+                popupMenu.menuInflater.inflate(R.menu.post_menu, popupMenu.menu)
+                popupMenu.setOnMenuItemClickListener { item: MenuItem ->
+                    when(item.itemId) {
+                        R.id.edit -> {
+
+                        }
+                        R.id.delete -> {
+
+                        }
+                        else -> {
+                            false
+                        }
+                    }
+                }
+                popupMenu.show()
             }
         }
     }
