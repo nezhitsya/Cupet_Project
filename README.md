@@ -15,14 +15,20 @@
 <br>
 
 ### 로그인 및 회원가입
-
+<img width="150" alt="1" src="https://user-images.githubusercontent.com/60697742/106853470-18935580-66fd-11eb-965a-a28109ffb921.jpg">
+<img width="150" alt="1" src="https://user-images.githubusercontent.com/60697742/106853509-277a0800-66fd-11eb-8045-46ab25d0d1d4.jpg">
  <br>
 
-### 메인화면 및 게시물
+### 메인화면
 
-사용자가 설정한 지역에 따른 병원 목록
-
- <br>
+사용자가 설정한 지역에 따른 병원 목록 및 즐겨찾는 병원
+<img width="150" alt="1" src="https://user-images.githubusercontent.com/60697742/106853545-3c569b80-66fd-11eb-8901-ddff5c684a79.jpg">
+<br>
+상세 병원 정보 및 후기 / 진료비 기록
+<img width="150" alt="1" src="https://user-images.githubusercontent.com/60697742/106853640-6019e180-66fd-11eb-850a-59088627318d.jpg">
+<br>
+병원 검색
+<img width="150" alt="1" src="https://user-images.githubusercontent.com/60697742/106853539-38c31480-66fd-11eb-8b19-061fe2c057db.jpg">
 
 ### 프로필 화면
 
@@ -32,6 +38,9 @@
 
 자유롭게 글 및 사진 작성 <br>
 댓글, 북마크, 내 글 목록
+<img width="150" alt="1" src="https://user-images.githubusercontent.com/60697742/106853577-49738a80-66fd-11eb-82fd-5b8835100937.jpg">
+<img width="150" alt="1" src="https://user-images.githubusercontent.com/60697742/106853584-4d071180-66fd-11eb-99ee-90bb343bf97e.jpg">
+
 
 <br>
 
