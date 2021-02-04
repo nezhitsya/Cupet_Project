@@ -42,11 +42,15 @@
 ### 게시판 화면
 
 자유롭게 글 및 사진 작성 <br>
-댓글, 북마크, 내 글 목록 <br>
 <div style="width:200px; height:150px; margin:auto">
  <img width="200" alt="1" src="https://user-images.githubusercontent.com/60697742/106853577-49738a80-66fd-11eb-82fd-5b8835100937.jpg">
  <img width="200" alt="1" src="https://user-images.githubusercontent.com/60697742/106853584-4d071180-66fd-11eb-99ee-90bb343bf97e.jpg">
 </div>
+댓글, 북마크, 내 글 목록 <br>
+<div style="width:200px; height:150px; margin:auto">
+  <img width="200" alt="1" src="https://user-images.githubusercontent.com/60697742/106855232-f0f1bc80-66ff-11eb-8bad-e04822de5830.jpg">
+  <img width="200" alt="1" src="https://user-images.githubusercontent.com/60697742/106855239-f3541680-66ff-11eb-8f75-bae4c4eb1fe8.jpg">
+  <img width="200" alt="1" src="https://user-images.githubusercontent.com/60697742/106855246-f5b67080-66ff-11eb-9faf-827695bf0b64.jpg">
 
 
 <br>
