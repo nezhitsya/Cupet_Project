@@ -35,6 +35,20 @@
 병원 검색 <br>
 <img width="250" alt="1" src="https://user-images.githubusercontent.com/60697742/106853539-38c31480-66fd-11eb-8b19-061fe2c057db.jpg">
 
+### 병원 후기 작성
+
+별점 기록 기능 / 병원 후기 작성 <br>
+<img width="250" alt="1" src="https://user-images.githubusercontent.com/60697742/106854806-4c6f7a80-66ff-11eb-8601-6f3c0c3426a2.jpg">
+<br>
+ 
+### 진료비 기록 및 검색 기능
+
+개체 / 무게 / 진료명 -> 진료비 <br>
+<img width="250" alt="1" src="https://user-images.githubusercontent.com/60697742/106854835-572a0f80-66ff-11eb-8f6b-c4cc8b2ee6f3.jpg"> <br>
+각 기록에 따른 검색 기능 <br>
+
+<br>
+
 ### 프로필 화면
 <img width="250" alt="1" src="https://user-images.githubusercontent.com/60697742/106854478-b0de0a00-66fe-11eb-9548-12834fe85744.jpeg">
  <br>
@@ -54,18 +68,4 @@
 
 
 <br>
-
-### 병원 후기 작성
-
-별점 기록 기능 / 병원 후기 작성
-<img width="250" alt="1" src="https://user-images.githubusercontent.com/60697742/106854806-4c6f7a80-66ff-11eb-8601-6f3c0c3426a2.jpg">
-<br>
- 
-### 진료비 기록 및 검색 기능
-
-개체 / 무게 / 진료명 -> 진료비 <br>
-<img width="250" alt="1" src="https://user-images.githubusercontent.com/60697742/106854835-572a0f80-66ff-11eb-8f6b-c4cc8b2ee6f3.jpg"> <br>
-각 기록에 따른 검색 기능 <br>
-
- <br>
 
