@@ -56,13 +56,6 @@
                 android:padding="15dp"
                 android:background="@null" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/description"
-                android:layout_margin="5dp" />
-
         </RelativeLayout>
 
     </androidx.core.widget.NestedScrollView>

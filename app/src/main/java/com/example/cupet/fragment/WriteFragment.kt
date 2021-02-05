@@ -38,8 +38,6 @@ class WriteFragment : Fragment() {
     private lateinit var mImageUri: Uri
     lateinit var postid: String
 
-    private lateinit var recyclerView: RecyclerView
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,11 +47,6 @@ class WriteFragment : Fragment() {
         var write: ImageView = view.findViewById(R.id.finish)
         var write_txt: TextView = view.findViewById(R.id.finish_txt)
         var add_photo: FloatingActionButton = view.findViewById(R.id.addPhoto)
-
-        recyclerView = view.findViewById(R.id.recycler_view)
-        recyclerView.setHasFixedSize(true)
-        val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        recyclerView.layoutManager = linearLayoutManager
 
         write.setOnClickListener {
             post()
