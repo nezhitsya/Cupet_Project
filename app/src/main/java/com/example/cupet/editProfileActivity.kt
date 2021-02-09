@@ -103,7 +103,7 @@ class editProfileActivity : AppCompatActivity() {
 
                     val reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.uid)
                     var hashMap: HashMap<String, Any> = HashMap()
-                    hashMap.put("profile", url)
+                    hashMap["profile"] = url
                     reference.updateChildren(hashMap)
                 }
             }
@@ -119,8 +119,8 @@ class editProfileActivity : AppCompatActivity() {
         if(requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             var result: CropImage.ActivityResult  = CropImage.getActivityResult(data)
             mImageUri = result.uri
-
             uploadImage()
+            profile.setImageURI(mImageUri)
         } else {
             Toast.makeText(this, "다시 시도해주세요.", Toast.LENGTH_SHORT).show();
         }

@@ -1,5 +1,6 @@
 package com.example.cupet
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -134,7 +135,10 @@ class HomeActivity : AppCompatActivity() {
                 val user: User? = dataSnapshot.getValue(User::class.java)
                 user?.let {
                     nickname.text = user.nickname
-                    Glide.with(this@HomeActivity).load(user.profile).into(profile)
+                    var activity: Activity = this@HomeActivity
+                    if(activity.isFinishing)
+                        return
+                    Glide.with(activity).load(user.profile).into(profile)
                 }
             }
 
