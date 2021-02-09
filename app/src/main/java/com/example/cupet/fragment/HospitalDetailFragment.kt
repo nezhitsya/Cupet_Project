@@ -1,7 +1,9 @@
 package com.example.cupet.fragment
 
 import android.content.Context.MODE_PRIVATE
+import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -35,6 +37,7 @@ class HospitalDetailFragment : Fragment() {
     lateinit var mReference: DatabaseReference
     lateinit var hospitalName: String
     lateinit var firebaseUser: FirebaseUser
+    lateinit var tel: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,6 +65,8 @@ class HospitalDetailFragment : Fragment() {
 
         var more_estimate: TextView = view.findViewById(R.id.more_estimate)
         var more_cost: TextView = view.findViewById(R.id.more_cost)
+        var call_txt: TextView = view.findViewById(R.id.call_txt)
+        var call: ImageView = view.findViewById(R.id.call)
 
         more_estimate.setOnClickListener {
             activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, EstimateFragment()).addToBackStack(null).commit()
@@ -69,6 +74,20 @@ class HospitalDetailFragment : Fragment() {
 
         more_cost.setOnClickListener {
             activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, CostFragment()).addToBackStack(null).commit()
+        }
+
+        call_txt.setOnClickListener {
+            val input = tel
+            val uri = Uri.parse("tel:${input}")
+            val intent = Intent(Intent.ACTION_DIAL, uri)
+            startActivity(intent)
+        }
+
+        call.setOnClickListener {
+            val input = tel
+            val uri = Uri.parse("tel:${input}")
+            val intent = Intent(Intent.ACTION_DIAL, uri)
+            startActivity(intent)
         }
 
         myhospital.setOnClickListener {
@@ -113,6 +132,7 @@ class HospitalDetailFragment : Fragment() {
                     Glide.with(context!!).load(hospital.image).into(image)
                     address.text = hospital.address
                     intro.text = hospital.intro
+                    tel = hospital.tel.toString()
                     if(hospital.likes == 3) {
                         likes1?.setImageResource(R.drawable.ic_like)
                         likes2?.setImageResource(R.drawable.ic_like)
