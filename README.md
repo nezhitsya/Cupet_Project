@@ -28,8 +28,8 @@
 <img width="250" alt="1" src="https://user-images.githubusercontent.com/60697742/106853545-3c569b80-66fd-11eb-8901-ddff5c684a79.jpg">
 <br>
 
-상세 병원 정보 및 후기 / 진료비 기록 <br>
-<img width="250" alt="1" src="https://user-images.githubusercontent.com/60697742/106853640-6019e180-66fd-11eb-850a-59088627318d.jpg">
+상세 병원 정보 및 후기 / 전화상담 / 진료비 기록 <br>
+<img width="250" alt="1" src="https://user-images.githubusercontent.com/60697742/107324653-c9c63100-6aeb-11eb-8076-c4fa33b2e4e1.jpg">
 <br>
 
 병원 검색 <br>
@@ -38,7 +38,7 @@
 ### 병원 후기 작성
 
 별점 기록 기능 / 병원 후기 작성 <br>
-<img width="250" alt="1" src="https://user-images.githubusercontent.com/60697742/106854806-4c6f7a80-66ff-11eb-8601-6f3c0c3426a2.jpg">
+<img width="250" alt="1" src="https://user-images.githubusercontent.com/60697742/107324661-cb8ff480-6aeb-11eb-8486-19b31e1a5186.jpg">
 <br>
  
 ### 진료비 기록 및 검색 기능
