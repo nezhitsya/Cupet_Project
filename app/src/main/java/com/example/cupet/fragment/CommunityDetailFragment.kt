@@ -90,6 +90,7 @@ class CommunityDetailFragment : Fragment() {
 
         trash.setOnClickListener {
             FirebaseDatabase.getInstance().getReference("Posts").child(postid).removeValue()
+            activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, CommunityFragment()).addToBackStack(null).commit()
         }
 
         recyclerView = view.findViewById(R.id.recycler_view)

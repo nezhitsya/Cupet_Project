@@ -180,6 +180,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="후기"
+                    android:textColor="@color/colorBlack"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp" />
 
@@ -219,6 +220,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="진료비"
+                    android:textColor="@color/colorBlack"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp" />
 

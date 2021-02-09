@@ -73,14 +73,13 @@ class WriteFragment : Fragment() {
 
         val hashMap: HashMap<String, Any> = HashMap()
         hashMap["postid"] = postid
-        hashMap["description1"] = description1
-        hashMap["description2"] = description2
+        hashMap["description"] = description1
+        hashMap["description1"] = description2
         hashMap["title"] = title
         hashMap["time"] = System.currentTimeMillis()
         hashMap["publisher"] = FirebaseAuth.getInstance().currentUser!!.uid
 
-        reference.child(postid).setValue(hashMap)
-        uploadImage()
+        reference.child(postid).updateChildren(hashMap)
 
         activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, CommunityFragment()).addToBackStack(null).commit()
     }
@@ -126,7 +125,7 @@ class WriteFragment : Fragment() {
             var result: CropImage.ActivityResult  = CropImage.getActivityResult(data)
             mImageUri = result.uri
 
-            post()
+            uploadImage()
         } else {
             Toast.makeText(context, "다시 시도해주세요.", Toast.LENGTH_SHORT).show();
         }
