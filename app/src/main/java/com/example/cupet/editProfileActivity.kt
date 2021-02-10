@@ -81,7 +81,7 @@ class editProfileActivity : AppCompatActivity() {
     }
 
     private fun getFileExtension(uri: Uri): String? {
-        var contentResolver: ContentResolver = getContentResolver()
+        var contentResolver: ContentResolver = contentResolver
         var mimeTypeMap: MimeTypeMap = MimeTypeMap.getSingleton()
         return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri))
     }

@@ -22,12 +22,18 @@ import com.example.cupet.adapter.EstimateAdapter
 import com.example.cupet.model.Cost
 import com.example.cupet.model.Estimate
 import com.example.cupet.model.Hospital
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.MapView
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_hospital_detail.*
 
-class HospitalDetailFragment : Fragment() {
+class HospitalDetailFragment : Fragment(), OnMapReadyCallback {
 
     private lateinit var recyclerView: RecyclerView
     var estimateList = arrayListOf<Estimate>()
@@ -38,6 +44,8 @@ class HospitalDetailFragment : Fragment() {
     lateinit var hospitalName: String
     lateinit var firebaseUser: FirebaseUser
     lateinit var tel: String
+
+    lateinit var mapView: MapView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -112,12 +120,23 @@ class HospitalDetailFragment : Fragment() {
         linearLayoutManager1.stackFromEnd = true
         recyclerView_cost.layoutManager = linearLayoutManager1
 
+        mapView = view.findViewById(R.id.googleMap)
+        mapView.getMapAsync(this)
+
         hospitalInfo()
         myHospital(hospitalName, myhospital)
         getEstimate()
         getCost()
 
         return view
+    }
+
+    override fun onMapReady(p0: GoogleMap?) {
+        var address: LatLng = LatLng()
+        var markerOptions: MarkerOptions = MarkerOptions()
+        markerOptions.position(address)
+        googleMap.(CameraUpdateFactory.newLatLng(address))
+        googleMap.animateCamera(CameraUpdateFactory.zoomTo(13))
     }
 
     private fun hospitalInfo() {

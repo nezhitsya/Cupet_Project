@@ -33,7 +33,7 @@ class WriteFragment : Fragment() {
 
     lateinit var firebaseUser: FirebaseUser
     lateinit var storageRef: StorageReference
-    private lateinit var mImageUri: Uri
+    lateinit var mImageUri: Uri
     lateinit var postid: String
 
     override fun onCreateView(

@@ -249,6 +249,13 @@
 
             </LinearLayout>
 
+            <com.google.android.gms.maps.MapView
+                android:id="@+id/googleMap"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_below="@+id/cost_container"
+                android:name="com.google.android.gms.maps.MapFragment" />
+
         </RelativeLayout>
 
     </androidx.core.widget.NestedScrollView>
