@@ -132,11 +132,11 @@ class HospitalDetailFragment : Fragment(), OnMapReadyCallback {
     }
 
     override fun onMapReady(p0: GoogleMap?) {
-        var address: LatLng = LatLng()
-        var markerOptions: MarkerOptions = MarkerOptions()
-        markerOptions.position(address)
-        googleMap.(CameraUpdateFactory.newLatLng(address))
-        googleMap.animateCamera(CameraUpdateFactory.zoomTo(13))
+//        var address: LatLng = LatLng()
+//        var markerOptions: MarkerOptions = MarkerOptions()
+//        markerOptions.position(address)
+//        googleMap.(CameraUpdateFactory.newLatLng(address))
+//        googleMap.animateCamera(CameraUpdateFactory.zoomTo(13))
     }
 
     private fun hospitalInfo() {
