@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.DatePicker
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
@@ -22,12 +23,9 @@ import com.example.cupet.adapter.EstimateAdapter
 import com.example.cupet.model.Cost
 import com.example.cupet.model.Estimate
 import com.example.cupet.model.Hospital
-import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
@@ -75,6 +73,8 @@ class HospitalDetailFragment : Fragment(), OnMapReadyCallback {
         var more_cost: TextView = view.findViewById(R.id.more_cost)
         var call_txt: TextView = view.findViewById(R.id.call_txt)
         var call: ImageView = view.findViewById(R.id.call)
+        var datePicker: DatePicker = view.findViewById(R.id.datepicker)
+        datePicker.spinnersShown = false
 
         more_estimate.setOnClickListener {
             activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, EstimateFragment()).addToBackStack(null).commit()
@@ -120,8 +120,8 @@ class HospitalDetailFragment : Fragment(), OnMapReadyCallback {
         linearLayoutManager1.stackFromEnd = true
         recyclerView_cost.layoutManager = linearLayoutManager1
 
-        mapView = view.findViewById(R.id.googleMap)
-        mapView.getMapAsync(this)
+//        mapView = view.findViewById(R.id.googleMap)
+//        mapView.getMapAsync(this)
 
         hospitalInfo()
         myHospital(hospitalName, myhospital)

@@ -249,12 +249,21 @@
 
             </LinearLayout>
 
-            <com.google.android.gms.maps.MapView
-                android:id="@+id/googleMap"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
+<!--            <com.google.android.gms.maps.MapView-->
+<!--                android:id="@+id/googleMap"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="250dp"-->
+<!--                android:layout_below="@+id/cost_container"-->
+<!--                android:name="com.google.android.gms.maps.MapFragment" />-->
+
+            <DatePicker
+                android:id="@+id/datepicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:datePickerMode="spinner"
                 android:layout_below="@+id/cost_container"
-                android:name="com.google.android.gms.maps.MapFragment" />
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true" />
 
         </RelativeLayout>
 
