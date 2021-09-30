@@ -102,7 +102,7 @@ class CommentFragment : Fragment() {
                         commentList.add(comment)
                     }
                 }
-                val adapter = CommentAdapter(context!!, commentList)
+                val adapter = CommentAdapter(context!!, commentList, postid)
                 adapter.notifyDataSetChanged()
                 recyclerView.adapter = adapter
             }

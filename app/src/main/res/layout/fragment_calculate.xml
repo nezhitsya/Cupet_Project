@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.CalculateFragment">
+
+    <LinearLayout
+        android:id="@+id/type_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_margin="10dp">
+
+        <Spinner
+            android:id="@+id/species"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:padding="23dp" />
+
+        <Spinner
+            android:id="@+id/weight"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:padding="23dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/cost_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/type_container">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="10dp"
+            android:src="@drawable/ic_search" />
+
+        <EditText
+            android:id="@+id/search_bar"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@android:color/transparent"
+            android:hint="진단 검색"/>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/cost_search"/>
+
+</RelativeLayout>

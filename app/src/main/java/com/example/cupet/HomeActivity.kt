@@ -10,10 +10,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.view.GravityCompat
 import com.bumptech.glide.Glide
-import com.example.cupet.fragment.CommunityFragment
-import com.example.cupet.fragment.HomeFragment
-import com.example.cupet.fragment.SearchFragment
-import com.example.cupet.fragment.WriteFragment
+import com.example.cupet.fragment.*
 import com.example.cupet.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -92,6 +89,7 @@ class HomeActivity : AppCompatActivity() {
             bookmark.visibility = View.GONE
             trash.visibility = View.GONE
             myhospital.visibility = View.GONE
+            supportFragmentManager.beginTransaction().replace(R.id.fragment_container, CalculateFragment()).addToBackStack(null).commit()
         }
 
         nav_post.setOnClickListener {

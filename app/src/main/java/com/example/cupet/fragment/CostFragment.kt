@@ -94,6 +94,7 @@ class CostFragment : Fragment() {
         val cost_int: Int = parseInt(cost_txt.text.toString())
 
         val hashMap: HashMap<String, Any> = HashMap()
+        hashMap["hospital"] = hospitalName
         hashMap["cost"] = cost_int
         hashMap["costid"] = costid
         hashMap["weight"] = weight_txt
