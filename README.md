@@ -49,6 +49,10 @@
 
 <br>
 
+## 진료비 계산기
+개체 / 무게 선택 후 진단명으로 검색 -> 다른 유저들이 기록한 각 병원의 진료비 도출
+<img width="250" alt="1" src="https://user-images.githubusercontent.com/60697742/135561284-4bf215ea-322f-42ee-9922-fd897c9e3afc.jpg"> <br>
+
 ### 프로필 화면
 <img width="250" alt="1" src="https://user-images.githubusercontent.com/60697742/106854478-b0de0a00-66fe-11eb-9548-12834fe85744.jpeg">
  <br>
@@ -68,6 +72,3 @@
 
 
 <br>
-
- 추가해야할 기능 : 병원 선택. 이미지 다수 삽입, 전화, 편집 삭제기능
-

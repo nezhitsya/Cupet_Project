@@ -22,8 +22,6 @@ class CalculateFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     var calcList = arrayListOf<Cost>()
 
-    lateinit var weight_txt: String
-    lateinit var species_txt: String
     lateinit var species: Spinner
     lateinit var weight: Spinner
 
@@ -88,8 +86,8 @@ class CalculateFragment : Fragment() {
                 for(snapshot: DataSnapshot in dataSnapshot.children) {
                     val cost: Cost? = snapshot.getValue(Cost::class.java)
 
-                    weight_txt = weight.selectedItem.toString()
-                    species_txt = species.selectedItem.toString()
+                    var weight_txt = weight.selectedItem.toString()
+                    var species_txt = species.selectedItem.toString()
 
                     cost?.let {
                         if (cost.species == species_txt && cost.weight == weight_txt) {
